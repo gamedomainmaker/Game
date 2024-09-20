@@ -1,0 +1,37 @@
+{
+  "docs/getting-started.html": {
+    "href": "docs/getting-started.html",
+    "title": "Getting Started | GameDomain",
+    "keywords": "Getting Started"
+  },
+  "docs/introduction.html": {
+    "href": "docs/introduction.html",
+    "title": "Introduction | GameDomain",
+    "keywords": "Introduction"
+  },
+  "domain/Game.Domain.html": {
+    "href": "domain/Game.Domain.html",
+    "title": "Namespace Game.Domain | GameDomain",
+    "keywords": "Namespace Game.Domain Classes Numbers"
+  },
+  "domain/Game.Domain.Numbers.html": {
+    "href": "domain/Game.Domain.Numbers.html",
+    "title": "Class Numbers | GameDomain",
+    "keywords": "Class Numbers Namespace Game.Domain Assembly Game.Domain.dll public class Numbers Inheritance object Numbers Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods FourtyTwo() Gets a specific number public int FourtyTwo() Returns int The number 42"
+  },
+  "domain/Game.Tests.html": {
+    "href": "domain/Game.Tests.html",
+    "title": "Namespace Game.Tests | GameDomain",
+    "keywords": "Namespace Game.Tests Classes NumberTests"
+  },
+  "domain/Game.Tests.NumberTests.html": {
+    "href": "domain/Game.Tests.NumberTests.html",
+    "title": "Class NumberTests | GameDomain",
+    "keywords": "Class NumberTests Namespace Game.Tests Assembly Game.Tests.dll public class NumberTests Inheritance object NumberTests Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods FourtyTwo_ShouldReturnFortyTwo() Checks that the numbers return the correct number. [Fact] public void FourtyTwo_ShouldReturnFortyTwo()"
+  },
+  "index.html": {
+    "href": "index.html",
+    "title": "This is the HOMEPAGE. | GameDomain",
+    "keywords": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+  }
+}

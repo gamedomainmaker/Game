@@ -1,0 +1,13 @@
+### YamlMime:TableOfContent
+items:
+- uid: Game.Domain
+  name: Game.Domain
+  items:
+  - uid: Game.Domain.Numbers
+    name: Numbers
+- uid: Game.Tests
+  name: Game.Tests
+  items:
+  - uid: Game.Tests.NumberTests
+    name: NumberTests
+memberLayout: SamePage
