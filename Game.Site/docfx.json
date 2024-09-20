@@ -1,0 +1,42 @@
+{
+  "metadata": [{
+    "src": [{
+      "files": ["**/**.sln"],
+      "src": "../."
+    }],
+    "dest": "domain",
+    "properties": {
+      "TargetFramework": "net8.0"
+    }
+  }],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "wwwroot/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "wwwroot",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "GameDomain",
+      "_appTitle": "GameDomain",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}

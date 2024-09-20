@@ -1,0 +1,8 @@
+{
+  "Game.Domain": "Game.Domain.yml",
+  "Game.Domain.Numbers": "Game.Domain.Numbers.yml",
+  "Game.Domain.Numbers.FourtyTwo": "Game.Domain.Numbers.yml",
+  "Game.Tests": "Game.Tests.yml",
+  "Game.Tests.NumberTests": "Game.Tests.NumberTests.yml",
+  "Game.Tests.NumberTests.FourtyTwo_ShouldReturnFortyTwo": "Game.Tests.NumberTests.yml"
+}
