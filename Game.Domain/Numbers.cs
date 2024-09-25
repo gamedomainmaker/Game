@@ -6,5 +6,11 @@ public class Numbers
     /// Gets a specific number
     /// </summary>
     /// <returns>The number 42</returns>
-public int FourtyTwo() { return 42; }
+    public int FourtyTwo() { return 42; }
+
+    /// <summary>
+    /// Gets a specific number
+    /// </summary>
+    /// <returns>The number 49</returns>
+    public int FourtyNine() { return 49; }
 }
