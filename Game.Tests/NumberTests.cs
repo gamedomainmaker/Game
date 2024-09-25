@@ -4,13 +4,9 @@ namespace Game.Tests;
 
 public class NumberTests
 {
-    /// <summary>
-    /// Checks that the numbers return the correct number.
-    /// </summary>
-    [Fact]
-    public void FourtyTwo_ShouldReturnFortyTwo()
-    {
-        int actualValue = new Numbers().FourtyTwo(); 
-Assert.Equal(42, actualValue);
-    }
-}
+[Fact]
+[Trait("Creator", "TestEditingPlugin")]
+public void FourtyTwo_ShouldReturnFortyTwo()
+{
+    int actualValue = new Numbers().FourtyTwo(); Assert . Equal ( 42 ,  actualValue ) ; 
+}}

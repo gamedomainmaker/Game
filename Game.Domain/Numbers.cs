@@ -1,4 +1,4 @@
-﻿namespace Game.Domain;
+namespace Game.Domain;
 
 public class Numbers
 {
@@ -6,5 +6,5 @@ public class Numbers
     /// Gets a specific number
     /// </summary>
     /// <returns>The number 42</returns>
-    public int FourtyTwo() { return 42; }
+public int FourtyTwo() { return 42; }
 }
