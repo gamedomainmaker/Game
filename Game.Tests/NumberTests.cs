@@ -11,6 +11,6 @@ public class NumberTests
     public void FourtyTwo_ShouldReturnFortyTwo()
     {
         int actualValue = new Numbers().FourtyTwo(); 
-        Assert.Equal(43, actualValue);
+        Assert.Equal(42, actualValue);
     }
 }
