@@ -1,18 +1,19 @@
 using System.Numerics;
 using Xunit;
-using Game;
-// Removed the using directive for GameNamespace as it could not be found
 
-namespace Game.Tests;
+namespace Game.Tests.SettlersOfCatan;
 
-public class SettlersOfCatanTests
+public class TryBuildSettlementTests
 {
+    private Player player1;
+    private Player player2;
+    private Player player;
+
     [Fact]
     public void CannotBuildSettlementWithoutNecessaryResources()
     {
         // Arrange
-        var player = new Player();
-        player.Resources = new Resources(0, 0, 0, 0); // No resources
+        player = new Player { Resources = new Resources(0, 0, 0, 0) };
 
         var board = new Board();
         var location = new Location(1, 1); // Arbitrary valid location
@@ -28,8 +29,7 @@ public class SettlersOfCatanTests
     public void CannotBuildSettlementOnInvalidLocation()
     {
         // Arrange
-        var player = new Player();
-        player.Resources = new Resources(1, 1, 1, 1); // Has the necessary resources
+        player = new Player { Resources = new Resources(1, 1, 1, 1) };
 
         var board = new Board();
         var invalidLocation = new Location(-1, -1); // Invalid location off the board
@@ -45,10 +45,9 @@ public class SettlersOfCatanTests
     public void CannotBuildSettlementOnOccupiedLocation()
     {
         // Arrange
-        var player1 = new Player();
-        var player2 = new Player();
-        player1.Resources = new Resources(1, 1, 1, 1); // Has the necessary resources
-        player2.Resources = new Resources(1, 1, 1, 1);
+        player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
+        player2 = new Player { Resources = new Resources(1, 1, 1, 1) };
+        player = new Player { Resources = new Resources(10, 10, 10, 10), MaxSettlements = 5 };
 
         var board = new Board();
         var location = new Location(1, 1); // Valid location
@@ -65,9 +64,7 @@ public class SettlersOfCatanTests
     public void CannotBuildMoreThanMaxSettlements()
     {
         // Arrange
-        var player = new Player();
-        player.Resources = new Resources(10, 10, 10, 10); // Plenty of resources
-        player.MaxSettlements = 5; // Limit the number of settlements a player can build
+        player = new Player { Resources = new Resources(10, 10, 10, 10), MaxSettlements = 5 };
 
         var board = new Board();
 
