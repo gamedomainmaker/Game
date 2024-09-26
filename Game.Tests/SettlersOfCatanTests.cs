@@ -1,6 +1,7 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Xunit;
 using Game;
+// Removed the using directive for GameNamespace as it could not be found
 
 namespace Game.Tests;
 
