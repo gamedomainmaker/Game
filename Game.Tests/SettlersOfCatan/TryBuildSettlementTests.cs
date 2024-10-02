@@ -25,7 +25,6 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-    [Trait("HasTicket","true-Inconsistent Game Mechanics in Building Settlements")]
     public void CannotBuildSettlementOnInvalidLocation()
     {
         // Arrange
@@ -60,7 +59,6 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-    [Trait("HasTicket","true-Inconsistent Game Mechanics in Building Settlements")]
     public void CannotBuildSettlementAboveMaxLimit()
     {
         // Arrange
@@ -95,8 +93,7 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-    [Trait("HasTicket","true-Inconsistent Game Mechanics in Building Settlements")]
-    public void CannotBuildOnOccupiedLocation()
+[Trait("HasTicket","true-Test Failure: CannotBuildOnOccupiedLocation")]    public void CannotBuildOnOccupiedLocation()
     {
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
