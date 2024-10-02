@@ -2,27 +2,36 @@ namespace Game.Domain.SettlersOfCatan;
 
 public class Board
 {
-    public bool TryBuildSettlement(Player player, Location location)
+public bool TryBuildSettlement(Player player, Location location)
     {
+        // Check for valid location
         if (location.X < 0 || location.Y < 0) return false;
 
-        if (IsOccupied(location)) return false; // Occupied location
+        // Check if the location is occupied by another player's settlement
+        if (IsOccupied(location))
+        {
+            // Logging can be added here for better traceability
+            return false; // Can't build on an occupied location
+        }
 
+        // Ensure the player has enough resources to build a settlement
         if (player.Resources.Wood < 1 || player.Resources.Brick < 1 || player.Resources.Wheat < 1 || player.Resources.Sheep < 1)
         {
             return false; // Not enough resources
         }
 
+        // Check if the player has reached their maximum settlements limit
         if (player.Settlements.Count >= player.MaxSettlements)
         {
             return false; // Maximum settlements limit reached
         }
 
-        Settlement newSettlement = new Settlement();
+        // Proceed to build the new settlement
+        Settlement newSettlement = new Settlement { Location = location }; // Ensure location is set
         player.Settlements.Add(newSettlement);
+        Settlements.Add(newSettlement); // Add to the board's list of settlements
         return true;
-    }
-
+    } 
     public bool IsOccupied(Location location)
     {
         // Check if the location is occupied by any player
