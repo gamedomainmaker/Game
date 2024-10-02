@@ -81,7 +81,7 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-    public void CanBuildSettlementWithSufficientResources()
+[Trait("HasTicket","true-Inconsistency in Settlement Building Logic")]    public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player
