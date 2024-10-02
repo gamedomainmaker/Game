@@ -93,7 +93,7 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-[Trait("HasTicket","true-Test Failure: CannotBuildOnOccupiedLocation")]    public void CannotBuildOnOccupiedLocation()
+    public void CannotBuildOnOccupiedLocation()
     {
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
