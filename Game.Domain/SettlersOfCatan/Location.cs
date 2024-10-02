@@ -1,3 +1,5 @@
+namespace Game.Domain.SettlersOfCatan;
+
 public class Location
 {
     public int X { get; set; }

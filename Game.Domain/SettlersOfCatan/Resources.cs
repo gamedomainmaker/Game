@@ -1,3 +1,5 @@
+namespace Game.Domain.SettlersOfCatan;
+
 public class Resources
 {
     public int Wood { get; set; }
