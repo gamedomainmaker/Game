@@ -28,6 +28,6 @@ public bool TryBuildSettlement(Player player, Location location)
     return true; // Successful settlement building
 } public bool IsOccupied(Location location)
 {
-    // Logic to check if the location is occupied by any player
-    return Settlements.Any(s => s.Location.Equals(location)); // Check against existing settlements
+    // Check if the location is occupied by any player
+    return Settlements.Any(s => s.Location.Equals(location)); // Check if any settlement is present at the location
 } public List<Settlement> Settlements { get; set; } = new List<Settlement>(); }
