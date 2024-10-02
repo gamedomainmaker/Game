@@ -1,15 +1,15 @@
 public class Resources
 {
-    public int Wood { get; }
-    public int Brick { get; }
-    public int Wheat { get; }
-    public int Sheep { get; }
+    public int Wood { get; set; }
+    public int Brick { get; set; }
+    public int Sheep { get; set; }
+    public int Wheat { get; set; }
 
-    public Resources(int wood, int brick, int wheat, int sheep)
+    public Resources(int wood, int brick, int sheep, int wheat)
     {
         Wood = wood;
         Brick = brick;
-        Wheat = wheat;
         Sheep = sheep;
+        Wheat = wheat;
     }
 }
