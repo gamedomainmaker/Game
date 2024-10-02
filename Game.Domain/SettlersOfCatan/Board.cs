@@ -28,8 +28,6 @@ public bool TryBuildSettlement(Player player, Location location)
 
         // Proceed to build the new settlement
         Settlement newSettlement = new Settlement { Location = location }; // Ensure location is set
-        player.Settlements.Add(newSettlement);
-        Settlements.Add(newSettlement); // Add to the board's list of settlements
         return true;
     } 
     public bool IsOccupied(Location location)
