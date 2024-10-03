@@ -59,7 +59,7 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-[Trait("HasTicket","true-96d74028-eb7e-48b0-b1df-d926f209ea2f")]    public void CannotBuildSettlementAboveMaxLimit()
+    public void CannotBuildSettlementAboveMaxLimit()
     {
         // Arrange
         player = new Player { Resources = new Resources(10, 10, 10, 10), MaxSettlements = 5 };
@@ -93,7 +93,7 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-[Trait("HasTicket","true-96d74028-eb7e-48b0-b1df-d926f209ea2f")]    public void CannotBuildOnOccupiedLocation()
+    public void CannotBuildOnOccupiedLocation()
     {
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1) };

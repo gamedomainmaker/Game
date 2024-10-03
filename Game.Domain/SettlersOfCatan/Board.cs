@@ -10,7 +10,6 @@ public bool TryBuildSettlement(Player player, Location location)
         // Check if the location is occupied by another player's settlement
         if (IsOccupied(location))
         {
-            // Logging can be added here for better traceability
             return false; // Can't build on an occupied location
         }
 
@@ -27,10 +26,11 @@ public bool TryBuildSettlement(Player player, Location location)
         }
 
         // Proceed to build the new settlement
-        Settlement newSettlement = new Settlement { Location = location }; // Ensure location is set
+        Settlement newSettlement = new Settlement { Location = location }; 
+        player.Settlements.Add(newSettlement);
+        Settlements.Add(newSettlement);
         return true;
-    } 
-    public bool IsOccupied(Location location)
+    }     public bool IsOccupied(Location location)
     {
         // Check if the location is occupied by any player
         return Settlements.Any(s => s.Location.Equals(location)); // Check if any settlement is present at the location
