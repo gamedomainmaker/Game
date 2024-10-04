@@ -1,4 +1,4 @@
-namespace Game.Domain.SettlersOfCatan;
+namespace Game.Domain;
 
 public class Board
 {

@@ -1,6 +1,6 @@
-using Game.Domain.SettlersOfCatan;
+using Game.Domain;
 
-namespace Game.Tests.SettlersOfCatan;
+namespace Game.Tests;
 
 public class TryBuildSettlementTests
 {
