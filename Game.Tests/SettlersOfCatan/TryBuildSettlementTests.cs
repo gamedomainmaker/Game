@@ -57,7 +57,7 @@ public void CannotBuildSettlementOnInvalidLocation()
 
     // Assert
     Assert.False(result, "Player was able to build a settlement on an invalid location.");
-} 
+}
 [Fact]
 [Trait("HasTicket","Id-e572a51e-f30f-4b33-8203-ab6a0dac2f03")]
 public void CannotBuildOnOccupiedLocation()
