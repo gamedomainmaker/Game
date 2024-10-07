@@ -6,8 +6,7 @@ using System.Linq;
 public class Board
 {
     public List<Settlement> Settlements { get; set; } = new List<Settlement>();
-
-    public bool IsLocationOccupied(Location location)
+public bool IsLocationOccupied(Location location)
     {
         return Settlements.Any(s => s.Location.Equals(location));
     }

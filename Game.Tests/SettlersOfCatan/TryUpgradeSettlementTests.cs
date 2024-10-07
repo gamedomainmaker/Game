@@ -5,8 +5,7 @@ namespace Game.Tests.SettlersOfCatan;
 
 public class TryUpgradeSettlementTests
 {
-    [Fact]
-[Trait("HasTicket", "Id-734404d6-adc7-4960-98f9-48c47bed13c1")]    public void CanUpgradeSettlementToCity()
+[Fact][Trait("HasTicket", "Id-734404d6-adc7-4960-98f9-48c47bed13c1")]public void CanUpgradeSettlementToCity()
     {
         var board = new Board();
         var player = new Player(); // Assuming a default constructor exists
@@ -17,9 +16,7 @@ public class TryUpgradeSettlementTests
 
         Assert.True(result);
     }
-
-    [Fact]
-    public void CanNotUpgradeSettlementToCity()
+[Fact]    public void CanNotUpgradeSettlementToCity()
     {
         var board = new Board();
         var player = new Player(); // Assuming a default constructor exists

@@ -13,7 +13,7 @@ public Resources Resources { get; set; } = new Resources(0, 0, 0, 0, 0); public 
 public void AddSettlement(Settlement settlement)
     {
         settlements.Add(settlement);
-    } 
+    }
     public int SettlementCount()
     {
         return settlements.Count;

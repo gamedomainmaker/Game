@@ -10,8 +10,7 @@ public class Location
         X = x;
         Y = y;
     }
-
-    public override bool Equals(object? obj) // Added nullable annotation
+public override bool Equals(object? obj)
     {
         if (obj is Location location)
         {
