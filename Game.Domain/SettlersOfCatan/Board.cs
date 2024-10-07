@@ -9,7 +9,7 @@ public class Board
 public bool IsLocationOccupied(Location location)
     {
         return Settlements.Any(s => s.Location.Equals(location));
-    } public bool IsValidLocation(Location location)
+    }  public bool IsValidLocation(Location location)
     {
         return location != null && 
                location.X >= 0 && location.Y >= 0;
@@ -21,7 +21,9 @@ public bool TryBuildSettlement(Player player, Location location)
         if (player.SettlementCount() >= player.MaxSettlements) return false;
         if (IsLocationOccupied(location)) return false;
 
-        player.AddSettlement(new Settlement(location));
+        var settlement = new Settlement(location);
+        Settlements.Add(settlement);
+        player.AddSettlement(settlement);
         player.Resources.Wood--;
         player.Resources.Brick--;
         player.Resources.Wheat--;
