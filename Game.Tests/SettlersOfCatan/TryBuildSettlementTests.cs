@@ -25,7 +25,8 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-[Trait("HasTicket","Id-e572a51e-f30f-4b33-8203-ab6a0dac2f03")]    public void CannotBuildSettlementOnInvalidLocation()
+    [Trait("HasTicket","Id-e572a51e-f30f-4b33-8203-ab6a0dac2f03")]
+    public void CannotBuildSettlementOnInvalidLocation()
     {
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1) };
@@ -93,7 +94,8 @@ public class TryBuildSettlementTests
     }
 
     [Fact]
-[Trait("HasTicket","Id-e572a51e-f30f-4b33-8203-ab6a0dac2f03")]    public void CannotBuildOnOccupiedLocation()
+    [Trait("HasTicket","Id-e572a51e-f30f-4b33-8203-ab6a0dac2f03")]
+    public void CannotBuildOnOccupiedLocation()
     {
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
