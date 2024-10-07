@@ -1,25 +1,28 @@
-using System.Numerics;
 using Game.Domain;
 
 namespace Game.Tests.SettlersOfCatan;
 
 public class TryUpgradeSettlementTests
 {
-[Fact][Trait("HasTicket", "Id-04e61218-fbe7-44b1-b7cb-f865a3c5b3b3")]public void CanUpgradeSettlementToCity()
-{
-    var board = new Board();
-    var player = new Player();
-    var resources = new Resources(0, 0, 2, 0, 3); // Sufficient resources: 2 Wheat, 3 Stone
-    player.Resources = resources;
-    var location = new Location(0, 0); // Assuming this location is already occupied by a player's settlement
+    [Fact]
+[Trait("HasTicket", "Id-04e61218-fbe7-44b1-b7cb-f865a3c5b3b3")]    public void CanUpgradeSettlementToCity()
+    {
+        var board = new Board();
+        var player = new Player();
+        var resources = new Resources(0, 0, 2, 0, 3); // Sufficient resources: 2 Wheat, 3 Stone
+        player.Resources = resources;
+        var location = new Location(0, 0); // Assuming this location is already occupied by a player's settlement
 
-    board.TryBuildSettlement(player, location); // First, build a settlement at the location
+        board.TryBuildSettlement(player, location); // First, build a settlement at the location
 
-    // Now attempt to upgrade the settlement
-    var result = board.TryUpgradeSettlement(player, location);
+        // Now attempt to upgrade the settlement
+        var result = board.TryUpgradeSettlement(player, location);
 
-    Assert.True(result);
-} [Fact]public void CanNotUpgradeSettlementToCity()
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void CanNotUpgradeSettlementToCity()
     {
         var board = new Board();
         var player = new Player();
@@ -33,4 +36,5 @@ public class TryUpgradeSettlementTests
         var result = board.TryUpgradeSettlement(player, location);
 
         Assert.False(result);
-    } }
+    }
+}
