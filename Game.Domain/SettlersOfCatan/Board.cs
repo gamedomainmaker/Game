@@ -1,7 +1,23 @@
 namespace Game.Domain;
 
+using System.Collections.Generic;
+using System.Linq;
+
 public class Board
 {
+    public List<Settlement> Settlements { get; set; } = new List<Settlement>();
+
+    public bool IsLocationOccupied(Location location)
+    {
+        return Settlements.Any(s => s.Location.Equals(location));
+    }
+
+    public bool IsValidLocation(Location location)
+    {
+        return location != null && 
+               location.X >= 0 && location.Y >= 0;
+    }
+
     public bool TryBuildSettlement(Player player, Location location)
     {
         if (location == null || !IsValidLocation(location)) return false; // Check for valid location
@@ -16,12 +32,4 @@ public class Board
         player.Resources.Sheep--;
         return true;
     }
-public bool IsLocationOccupied(Location location)
-{
-    return Settlements.Any(s => s.Location.Equals(location));
-} public bool IsValidLocation(Location location)
-    {
-        return location != null && 
-               location.X >= 0 && location.Y >= 0;
-    }     public List<Settlement> Settlements { get; set; } = new List<Settlement>();
 }
