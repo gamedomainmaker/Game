@@ -23,23 +23,22 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player was able to build a settlement without the necessary resources.");
     }
+[Fact]
+[Trait("HasTicket","Id-e572a51e-f30f-4b33-8203-ab6a0dac2f03")]
+public void CannotBuildSettlementOnInvalidLocation()
+{
+    // Arrange
+    player = new Player { Resources = new Resources(1, 1, 1, 1) };
 
-    [Fact]
-    [Trait("HasTicket","Id-e572a51e-f30f-4b33-8203-ab6a0dac2f03")]
-    public void CannotBuildSettlementOnInvalidLocation()
-    {
-        // Arrange
-        player = new Player { Resources = new Resources(1, 1, 1, 1) };
+    var board = new Board();
+    var invalidLocation = new Location(-1, -1); // Invalid location off the board
 
-        var board = new Board();
-        var invalidLocation = new Location(-1, -1); // Invalid location off the board
+    // Act
+    var result = board.TryBuildSettlement(player, invalidLocation);
 
-        // Act
-        var result = board.TryBuildSettlement(player, invalidLocation);
-
-        // Assert
-        Assert.False(result, "Player was able to build a settlement on an invalid location.");
-    }
+    // Assert
+    Assert.False(result, "Player was able to build a settlement on an invalid location.");
+}
 
     [Fact]
     public void CanBuildSettlementWithSufficientResources()
