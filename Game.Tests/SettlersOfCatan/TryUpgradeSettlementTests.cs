@@ -5,13 +5,17 @@ namespace Game.Tests.SettlersOfCatan;
 
 public class TryUpgradeSettlementTests
 {
-[Fact][Trait("HasTicket", "Id-674d9e8c-e6e1-465f-9f49-338d92c49d93")]public void CanUpgradeSettlementToCity()
+[Fact]  [Trait("HasTicket", "Id-674d9e8c-e6e1-465f-9f49-338d92c49d93")]public void CanUpgradeSettlementToCity()
     {
         var board = new Board();
-        var player = new Player(); // Assuming a default constructor exists
-        var location = new Location(0, 0); // Provide appropriate values for x and y
+        var player = new Player();
+        var resources = new Resources(0, 0, 2, 0, 3); // Sufficient resources: 2 Wheat, 3 Stone
+        player.Resources = resources;
+        var location = new Location(0, 0); // Assuming this location is already occupied by a player's settlement
 
-        // Call the method to be tested
+        board.TryBuildSettlement(player, location); // First, build a settlement at the location
+
+        // Now attempt to upgrade the settlement
         var result = board.TryUpgradeSettlement(player, location);
 
         Assert.True(result);
@@ -19,10 +23,14 @@ public class TryUpgradeSettlementTests
 [Fact]    public void CanNotUpgradeSettlementToCity()
     {
         var board = new Board();
-        var player = new Player(); // Assuming a default constructor exists
-        var location = new Location(0, 0); // Provide appropriate values for x and y
+        var player = new Player();
+        var resources = new Resources(0, 0, 1, 0, 0); // Insufficient resources: not enough Wheat and Stone
+        player.Resources = resources;
+        var location = new Location(0, 0); // This location should have a settlement to upgrade
 
-        // Call the method to be tested
+        board.TryBuildSettlement(player, location);
+
+        // Now attempt to upgrade the settlement with insufficient resources
         var result = board.TryUpgradeSettlement(player, location);
 
         Assert.False(result);
