@@ -42,8 +42,7 @@ public class TryBuildSettlementTests
         // Assert
         Assert.True(result, "Player was unable to build a settlement with sufficient resources.");
     }
-
-    [Fact]
+[Fact]
     [Trait("HasTicket","Id-e572a51e-f30f-4b33-8203-ab6a0dac2f03")]
     public void CannotBuildSettlementOnInvalidLocation()
     {
