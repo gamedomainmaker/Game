@@ -37,8 +37,7 @@ public bool IsLocationOccupied(Location location)
     {
         return Settlements.Any(s => s.Location.Equals(location));
     }
-
-    public bool TryUpgradeSettlement(Player player, Location location)
+public bool TryUpgradeSettlement(Player player, Location location)
     {
         // Check if the location is valid and occupied
         if (location == null || !IsLocationOccupied(location)) return false;
@@ -57,5 +56,4 @@ public bool IsLocationOccupied(Location location)
         player.Resources.Stone -= 3;
 
         return true;
-    }
-}
+    } }
