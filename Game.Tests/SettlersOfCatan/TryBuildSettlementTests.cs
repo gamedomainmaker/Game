@@ -9,7 +9,7 @@ public class TryBuildSettlementTests
     private Player? player2;
     private Player? player;
 
-    [Fact]
+    [Fact]    
     public void CannotBuildSettlementWithoutNecessaryResources()
     {
         // Arrange
@@ -59,9 +59,8 @@ public class TryBuildSettlementTests
         Assert.False(result, "Player was able to build a settlement on an invalid location.");
     }
 
-    [Fact]
-    [Trait("HasTicket","Id-734404d6-adc7-4960-98f9-48c47bed13c1")]
-    public void CannotBuildOnOccupiedLocation()
+    [Fact]    
+[Trait("HasTicket", "Id-763a4c7b-99d4-4b6d-8998-b4fe40659bc0")]    public void CannotBuildOnOccupiedLocation()
     {
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1) };

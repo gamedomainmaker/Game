@@ -10,7 +10,7 @@ public class Board
     public bool IsLocationOccupied(Location location)
     {
         return Settlements.Any(s => s.Location.Equals(location));
-    } 
+    }
 
     public bool IsValidLocation(Location location)
     {
