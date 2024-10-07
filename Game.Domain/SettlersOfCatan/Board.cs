@@ -2,15 +2,14 @@ namespace Game.Domain;
 
 public class Board
 {
-    public bool TryBuildSettlement(Player player, Location location)
+public bool TryBuildSettlement(Player player, Location location)
     {
+        if (location == null || !IsValidLocation(location)) return false; // Check for valid location
         if (player.Resources.Wood < 1 || player.Resources.Brick < 1 || player.Resources.Wheat < 1 || player.Resources.Sheep < 1) return false;
         if (player.SettlementCount() >= player.MaxSettlements) return false;
-        if (IsLocationOccupied(location) || location == null) return false;
+        if (IsLocationOccupied(location)) return false;
 
-        // Logic to build the settlement in the desired location should be here.
-        player.AddSettlement(new Settlement(location)); // Check if location is valid and not already occupied
-                                                        // Deduct resources from the player
+        player.AddSettlement(new Settlement(location));
         player.Resources.Wood--;
         player.Resources.Brick--;
         player.Resources.Wheat--;
@@ -25,8 +24,10 @@ public class Board
     }
 
     public List<Settlement> Settlements { get; set; } = new List<Settlement>();
-public bool IsLocationOccupied(Location location)
-    {
+public bool IsLocationOccupied(Location location) {
         // Check if the location is occupied by any player
         return Settlements.Any(s => s.Location.Equals(location)); // Check if any settlement is present at the location
+    } public bool IsValidLocation(Location location) {
+        // Implement your logic to validate the location
+        return !Settlements.Any(s => s.Location.Equals(location)); // For example, a valid location could be one that is not occupied by any settlement.
     } }
