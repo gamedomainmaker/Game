@@ -52,7 +52,7 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player was able to build a settlement on an invalid location.");
     }
-[Fact]    [Trait("HasTicket", "Id-734404d6-adc7-4960-98f9-48c47bed13c1")]public void CannotBuildOnOccupiedLocation()
+[Fact][Trait("HasTicket", "Id-734404d6-adc7-4960-98f9-48c47bed13c1")]public void CannotBuildOnOccupiedLocation()
     {
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
@@ -69,24 +69,22 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
     } [Fact][Trait("HasTicket", "Id-734404d6-adc7-4960-98f9-48c47bed13c1")]public void CannotBuildOnAlreadyOccupiedLocation()
-    {
-        // Arrange
-        player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
-        player2 = new Player { Resources = new Resources(1, 1, 1, 1) };
-        var board = new Board();
-        var location = new Location(2, 2);
+{
+    // Arrange
+    player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
+    player2 = new Player { Resources = new Resources(1, 1, 1, 1) };
+    var board = new Board();
+    var location = new Location(2, 2);
 
-        // Player 1 builds a settlement at the location.
-        board.TryBuildSettlement(player1, location);
+    // Player 1 builds a settlement at the location.
+    board.TryBuildSettlement(player1, location);
 
-        // Act
-        var result = board.TryBuildSettlement(player2, location);
+    // Act
+    var result = board.TryBuildSettlement(player2, location);
 
-        // Assert
-        Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
-    } [Fact]
-[Trait("HasTicket", "Id-734404d6-adc7-4960-98f9-48c47bed13c1")]
-public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
+    // Assert
+    Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
+} [Fact][Trait("HasTicket", "Id-734404d6-adc7-4960-98f9-48c47bed13c1")]public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
 {
     // Arrange
     player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
