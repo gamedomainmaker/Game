@@ -42,7 +42,8 @@ public class TryBuildSettlementTests
         // Assert
         Assert.True(result, "Player was unable to build a settlement with sufficient resources.");
     }
-[Fact]
+
+    [Fact]
     public void CannotBuildSettlementOnInvalidLocation()
     {
         // Arrange
@@ -57,21 +58,24 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player was able to build a settlement on an invalid location.");
     }
-[Fact]
-[Trait("HasTicket","Id-734404d6-adc7-4960-98f9-48c47bed13c1")]public void CannotBuildOnOccupiedLocation()
-{
-    // Arrange
-    player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
-    player2 = new Player { Resources = new Resources(1, 1, 1, 1) };
-    var board = new Board();
-    var location = new Location(0, 0); // Location to be occupied
 
-    // Player 1 builds a settlement at the location.
-    board.TryBuildSettlement(player1, location);
+    [Fact]
+    [Trait("HasTicket","Id-734404d6-adc7-4960-98f9-48c47bed13c1")]
+    public void CannotBuildOnOccupiedLocation()
+    {
+        // Arrange
+        player1 = new Player { Resources = new Resources(1, 1, 1, 1) };
+        player2 = new Player { Resources = new Resources(1, 1, 1, 1) };
+        var board = new Board();
+        var location = new Location(0, 0); // Location to be occupied
 
-    // Act
-    var result = board.TryBuildSettlement(player2, location); // Player 2 tries to build on the occupied spot
+        // Player 1 builds a settlement at the location.
+        board.TryBuildSettlement(player1, location);
 
-    // Assert
-    Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
-} }
+        // Act
+        var result = board.TryBuildSettlement(player2, location); // Player 2 tries to build on the occupied spot
+
+        // Assert
+        Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
+    }
+}
