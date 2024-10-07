@@ -2,39 +2,31 @@ namespace Game.Domain;
 
 public class Board
 {
-public bool TryBuildSettlement(Player player, Location location)
+    public bool TryBuildSettlement(Player player, Location location)
     {
-        // Check for valid location
-        if (location.X < 0 || location.Y < 0) return false;
+        if (player.Resources.Wood < 1 || player.Resources.Brick < 1 || player.Resources.Wheat < 1 || player.Resources.Sheep < 1) return false;
+        if (player.SettlementCount() >= player.MaxSettlements) return false;
+        if (IsLocationOccupied(location) || location == null) return false;
 
-        // Check if the location is occupied by another player's settlement
-        if (IsOccupied(location))
-        {
-            return false; // Can't build on an occupied location
-        }
-
-        // Ensure the player has enough resources to build a settlement
-        if (player.Resources.Wood < 1 || player.Resources.Brick < 1 || player.Resources.Wheat < 1 || player.Resources.Sheep < 1)
-        {
-            return false; // Not enough resources
-        }
-
-        // Check if the player has reached their maximum settlements limit
-        if (player.Settlements.Count >= player.MaxSettlements)
-        {
-            return false; // Maximum settlements limit reached
-        }
-
-        // Proceed to build the new settlement
-        Settlement newSettlement = new Settlement { Location = location }; 
-        player.Settlements.Add(newSettlement);
-        Settlements.Add(newSettlement);
+        // Logic to build the settlement in the desired location should be here.
+        player.AddSettlement(new Settlement(location)); // Check if location is valid and not already occupied
+                                                        // Deduct resources from the player
+        player.Resources.Wood--;
+        player.Resources.Brick--;
+        player.Resources.Wheat--;
+        player.Resources.Sheep--;
         return true;
-    }     public bool IsOccupied(Location location)
+    }
+
+    public bool IsOccupied(Location location)
     {
         // Check if the location is occupied by any player
         return Settlements.Any(s => s.Location.Equals(location)); // Check if any settlement is present at the location
     }
 
     public List<Settlement> Settlements { get; set; } = new List<Settlement>();
-}
+public bool IsLocationOccupied(Location location)
+    {
+        // Check if the location is occupied by any player
+        return Settlements.Any(s => s.Location.Equals(location)); // Check if any settlement is present at the location
+    } }
