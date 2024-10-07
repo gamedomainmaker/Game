@@ -33,5 +33,4 @@ public class TryUpgradeSettlementTests
         var result = board.TryUpgradeSettlement(player, location);
 
         Assert.False(result);
-    }
-}
+    } }

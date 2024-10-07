@@ -2,7 +2,8 @@ namespace Game.Domain;
 
 public class Player
 {
-public Resources Resources { get; set; } = new Resources(0, 0, 0, 0, 0); public int MaxSettlements { get; set; }
+    public Resources Resources { get; set; } = new Resources(0, 0, 0, 0, 0);
+    public int MaxSettlements { get; set; }
     private List<Settlement> settlements;
 
     public Player()
@@ -10,7 +11,8 @@ public Resources Resources { get; set; } = new Resources(0, 0, 0, 0, 0); public 
         settlements = new List<Settlement>();
         MaxSettlements = 5; // Default Max Settlements
     }
-public void AddSettlement(Settlement settlement)
+
+    public void AddSettlement(Settlement settlement)
     {
         settlements.Add(settlement);
     }
