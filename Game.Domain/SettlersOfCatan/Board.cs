@@ -21,11 +21,7 @@ public bool IsLocationOccupied(Location location)
     return Settlements.Any(s => s.Location.Equals(location));
 }      public bool IsValidLocation(Location location)
     {
-        // Implement your logic to validate the location
         return location != null && 
-               location.X >= 0 && location.Y >= 0 && 
-               !Settlements.Any(s => s.Location.Equals(location)); 
-    }
-
-    public List<Settlement> Settlements { get; set; } = new List<Settlement>();
+               location.X >= 0 && location.Y >= 0;
+    }     public List<Settlement> Settlements { get; set; } = new List<Settlement>();
 }
