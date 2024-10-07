@@ -16,13 +16,11 @@ public class Board
         player.Resources.Sheep--;
         return true;
     }
-
-    public bool IsLocationOccupied(Location location)
+public bool IsLocationOccupied(Location location)
     {
         // Check if the location is occupied by any player
         return Settlements.Any(s => s.Location.Equals(location)); // Check if any settlement is present at the location
-    }
-
+    } 
     public bool IsValidLocation(Location location)
     {
         // Implement your logic to validate the location

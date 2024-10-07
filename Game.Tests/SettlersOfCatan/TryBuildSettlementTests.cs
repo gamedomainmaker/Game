@@ -137,14 +137,14 @@ public class TryBuildSettlementTests
         var location = new Location(3, 3); // Valid location
 
         // Act
-        var result = board.TryBuildSettlement(player, location); // Player with insufficient resources tries to build
+        var result = board.TryBuildSettlement(player, location);
         
         // Assert
         Assert.True(result, "Player has resources and should be able to build a settlement.");
 
         // Act
         location = new Location(4, 4); // Valid location
-        result = board.TryBuildSettlement(player, location); // Player with insufficient resources tries to build
+        result = board.TryBuildSettlement(player, location);
 
         // Assert
         Assert.False(result, "Player now doesn't have enough resources and should not be able to build a settlement.");
