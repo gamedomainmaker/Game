@@ -11,12 +11,10 @@ public class Player
         settlements = new List<Settlement>();
         MaxSettlements = 5; // Default Max Settlements
     }
-
-    public void AddSettlement(Settlement settlement)
+public void AddSettlement(Settlement settlement)
     {
         settlements.Add(settlement);
-    }
-
+    } 
     public int SettlementCount()
     {
         return settlements.Count;
