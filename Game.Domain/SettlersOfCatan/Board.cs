@@ -6,15 +6,18 @@ using System.Linq;
 public class Board
 {
     public List<Settlement> Settlements { get; set; } = new List<Settlement>();
-public bool IsLocationOccupied(Location location)
+
+    public bool IsLocationOccupied(Location location)
     {
         return Settlements.Any(s => s.Location.Equals(location));
-    }  public bool IsValidLocation(Location location)
+    }
+    public bool IsValidLocation(Location location)
     {
-        return location != null && 
+        return location != null &&
                location.X >= 0 && location.Y >= 0;
     }
-public bool TryBuildSettlement(Player player, Location location)
+
+    public bool TryBuildSettlement(Player player, Location location)
     {
         if (location == null || !IsValidLocation(location)) return false; // Check for valid location
         if (player.Resources.Wood < 1 || player.Resources.Brick < 1 || player.Resources.Wheat < 1 || player.Resources.Sheep < 1) return false;
@@ -29,4 +32,31 @@ public bool TryBuildSettlement(Player player, Location location)
         player.Resources.Wheat--;
         player.Resources.Sheep--;
         return true;
-    } }
+    }
+
+    public bool IsOccupied(Location location)
+    {
+        return Settlements.Any(s => s.Location.Equals(location));
+    }
+
+    public bool TryUpgradeSettlement(Player player, Location location)
+    {
+        // Check if the location is valid and occupied
+        if (location == null || !IsLocationOccupied(location)) return false;
+
+        // Find the existing settlement at the location
+        var settlement = Settlements.FirstOrDefault(s => s.Location.Equals(location));
+        if (settlement == null) return false;
+
+        // Check if the player has enough resources to upgrade
+        if (player.Resources.Wheat < 2 || player.Resources.Stone < 3) return false;
+
+        // Upgrade the settlement logic here (you might want to modify the settlement type or increase its value)
+
+        // Deduct the resources
+        player.Resources.Wheat -= 2;
+        player.Resources.Stone -= 3;
+
+        return true;
+    }
+}

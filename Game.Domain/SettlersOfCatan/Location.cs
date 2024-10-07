@@ -11,7 +11,7 @@ public class Location
         Y = y;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj) // Added nullable annotation
     {
         if (obj is Location location)
         {
@@ -20,7 +20,7 @@ public class Location
         return false;
     }
 
-    public override int GetHashCode()
+    public override int GetHashCode() // Retaining correct GetHashCode implementation
     {
         return (X, Y).GetHashCode();
     }

@@ -2,8 +2,7 @@ namespace Game.Domain;
 
 public class Player
 {
-    public Resources Resources { get; set; }
-    public int MaxSettlements { get; set; }
+public Resources Resources { get; set; } = new Resources(0, 0, 0, 0, 0); public int MaxSettlements { get; set; }
     private List<Settlement> settlements;
 
     public Player()
