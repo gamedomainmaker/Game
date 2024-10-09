@@ -20,4 +20,4 @@ public class Player
     {
         return settlements.Count;
     }
-}
+public List<Settlement> Settlements { get { return settlements; } } }

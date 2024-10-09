@@ -7,21 +7,21 @@ public class TryUpgradeSettlementTests
 {
 [Fact][Trait("HasTicket", "Id-f2f1bb65-d572-4306-befe-f8ef8f4b53df")]public void CanUpgradeSettlementToCity()
 {
-    var board = new Board();
+    // Arrange
     var player = new Player();
-    var resources = new Resources(0, 0, 2, 0, 3); // 2 Wheat, 3 Stone
-    player.Resources = resources;
-    var location = new Location(0, 0);
+    player.Resources.Wheat = 2;
+    player.Resources.Stone = 3;
+    var location = new Location(1, 2);
+    var board = new Board();
+    board.TryBuildSettlement(player, location); // Ensure a settlement exists
 
-    board.TryBuildSettlement(player, location);
-
-    // Ensure the location has a settlement before attempting to upgrade
-    Assert.True(board.IsOccupied(location)); // This checks if the location is occupied
-
-    // Attempt to upgrade the settlement
+    // Act
     var result = board.TryUpgradeSettlement(player, location);
 
-    Assert.True(result, "Expected the upgrade to succeed when resources are sufficient.");
+    // Assert
+    Assert.True(result);
+    Assert.Equal(0, player.Resources.Wheat);
+    Assert.Equal(0, player.Resources.Stone);
 } [Fact]public void CanNotUpgradeSettlementToCity()
     {
         var board = new Board();
