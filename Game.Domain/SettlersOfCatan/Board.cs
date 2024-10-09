@@ -39,28 +39,24 @@ public class Board
     {
         return Settlements.Any(s => s.Location.Equals(location));
     }
-public bool TryUpgradeSettlement(Player player, Location location)
-    {
-        if (location == null || !IsLocationOccupied(location)) return false;
+public bool TryUpgradeSettlement(Player player, Location location) {
+    if (location == null || !IsLocationOccupied(location)) return false;
 
-        var settlement = Settlements.FirstOrDefault(s => s.Location.Equals(location));
-        if (settlement == null) return false;
+    var settlement = Settlements.FirstOrDefault(s => s.Location.Equals(location));
+    if (settlement == null) return false;
 
-        // Check if the player has sufficient resources to upgrade
-        if (player.Resources.Wheat < 2 || player.Resources.Stone < 3)
-        {
-            System.Console.WriteLine($"Insufficient resources: Wheat - {player.Resources.Wheat}, Stone - {player.Resources.Stone}");
-            return false;
-        }
+    // Check if the player has sufficient resources to upgrade
+    if (player.Resources.Wheat < 2 || player.Resources.Stone < 3) {
+        System.Console.WriteLine($"Insufficient resources: Wheat - {player.Resources.Wheat}, Stone - {player.Resources.Stone}");
+        return false;
+    }
 
-        // Adding debug logging for resource tracking
-        System.Console.WriteLine($"Attempting to upgrade settlement at {location}. Player resources: Wheat - {player.Resources.Wheat}, Stone - {player.Resources.Stone}");
+    // Adding debug logging for resource tracking
+    System.Console.WriteLine($"Attempting to upgrade settlement at {location}. Player resources: Wheat - {player.Resources.Wheat}, Stone - {player.Resources.Stone}");
 
-        // Deduct the resources required for upgrading
-        player.Resources.Wheat -= 2;
-        player.Resources.Stone -= 3;
+    // Deduct the resources required for upgrading
+    player.Resources.Wheat -= 2;
+    player.Resources.Stone -= 3;
 
-        // Assuming that the settlement will have some upgrade logic applied here
-
-        return true;  // Indicate the upgrade was successful
-    } }
+    return true;  // Indicate the upgrade was successful
+} }
