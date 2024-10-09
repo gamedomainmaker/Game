@@ -1,14 +1,36 @@
 using Game.Domain;
-using Xunit;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Game.Tests;
 
 public class TryBuildSettlementResourceTests
 {
     private Player? player;
+    private readonly ILogger<Board> _logger;
 
+    public TryBuildSettlementResourceTests()
+    {
+        // Configure Serilog to log to both console and file
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File("logs/test-log-.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
+        // Configure logging for the test
+        var serviceCollection = new ServiceCollection()
+            .AddLogging(builder =>
+            {
+                builder.AddSerilog();
+            });
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+
+        _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
+    }
     [Fact]
-[Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]public void CannotBuildSettlementWithoutNecessaryResources()
+    [Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]
+    public void CannotBuildSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(0, 0, 0, 0, 0) };
@@ -24,7 +46,8 @@ public class TryBuildSettlementResourceTests
     }
 
     [Fact]
-[Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]public void CanBuildSettlementWithSufficientResources()
+    [Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]
+    public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player();
@@ -39,7 +62,8 @@ public class TryBuildSettlementResourceTests
     }
 
     [Fact]
-[Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]public void CannotBuildTwoSettlementWithoutNecessaryResources()
+    [Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]
+    public void CannotBuildTwoSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };

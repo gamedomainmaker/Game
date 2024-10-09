@@ -1,4 +1,7 @@
 using Game.Domain;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Game.Tests;
 
@@ -7,7 +10,30 @@ public class TryBuildSettlementLocationTests
     private Player? player;
     private Player? player1;
     private Player? player2;
-[Fact]public void CannotBuildSettlementOnInvalidLocation()
+
+    private readonly ILogger<Board> _logger;
+
+    public TryBuildSettlementLocationTests()
+    {
+        // Configure Serilog to log to both console and file
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File("logs/test-log-.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
+        // Configure logging for the test
+        var serviceCollection = new ServiceCollection()
+            .AddLogging(builder =>
+            {
+                builder.AddSerilog();
+            });
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+
+        _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
+    }
+
+    [Fact]
+    public void CannotBuildSettlementOnInvalidLocation()
     {
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
@@ -21,7 +47,8 @@ public class TryBuildSettlementLocationTests
         // Assert
         Assert.False(result, "Player was able to build a settlement on an invalid location.");
     }
-[Fact]public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
+    [Fact]
+    public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
     {
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
