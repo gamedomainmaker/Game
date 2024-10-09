@@ -74,7 +74,7 @@ public class TryUpgradeSettlementTests
     [Fact]
     public void Can_Not_Upgrade_Settlement_To_City()
     {
-        var board = new Board();
+        var board = new Board(_logger);
         var resources = new Resources(0, 0, 1, 0, 0); // Insufficient resources: not enough Wheat and Stone
         board.TryBuildSettlement(player, settlements[0].Location);
 

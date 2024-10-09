@@ -35,7 +35,7 @@ public class TryBuildSettlementResourceTests
         // Arrange
         player = new Player { Resources = new Resources(0, 0, 0, 0, 0) };
 
-        var board = new Board();
+        var board = new Board(_logger);
         var location = new Location(1, 1); // Arbitrary valid location
 
         // Act
@@ -68,7 +68,7 @@ public class TryBuildSettlementResourceTests
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
 
-        var board = new Board();
+        var board = new Board(_logger);
         var location = new Location(1, 1); // Arbitrary valid location
 
         // Act
@@ -89,7 +89,7 @@ public class TryBuildSettlementResourceTests
         {
             Resources = new Resources(2, 2, 2, 2, 0)
         };
-        var board = new Board();
+        var board = new Board(_logger);
         var location = new Location(1, 1);
 
         // Act

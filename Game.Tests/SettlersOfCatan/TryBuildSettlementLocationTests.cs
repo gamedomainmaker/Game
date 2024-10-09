@@ -38,7 +38,7 @@ public class TryBuildSettlementLocationTests
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
 
-        var board = new Board();
+        var board = new Board(_logger);
         var invalidLocation = new Location(-1, -1);
 
         // Act
@@ -53,7 +53,7 @@ public class TryBuildSettlementLocationTests
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
         player2 = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
-        var board = new Board();
+        var board = new Board(_logger);
         var location = new Location(3, 3);
 
         // Player 1 builds a settlement at the location.
