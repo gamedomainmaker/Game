@@ -5,7 +5,7 @@ namespace Game.Tests;
 public class TryBuildSettlementResourceTests
 {
     private Player? player;
-[Fact]    public void CannotBuildSettlementWithoutNecessaryResources()
+[Fact]public void CannotBuildSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(0, 0, 0, 0, 0) };
@@ -19,7 +19,7 @@ public class TryBuildSettlementResourceTests
         // Assert
         Assert.False(result, "Player was able to build a settlement without the necessary resources.");
     }
-[Fact]    public void CanBuildSettlementWithSufficientResources()
+[Fact]public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player
@@ -35,7 +35,7 @@ public class TryBuildSettlementResourceTests
         // Assert
         Assert.True(result, "Player was unable to build a settlement with sufficient resources.");
     }
-[Fact]    public void CannotBuildTwoSettlementWithoutNecessaryResources()
+[Fact]public void CannotBuildTwoSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
@@ -52,7 +52,7 @@ public class TryBuildSettlementResourceTests
         // Assert
         Assert.False(result, "Player was able to build a settlement without the necessary resources.");
     }
-[Fact]    public void CanBuildTwoSettlementWithSufficientResources()
+[Fact]public void CanBuildTwoSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player
