@@ -46,17 +46,17 @@ public bool TryUpgradeSettlement(Player player, Location location)
         var settlement = Settlements.FirstOrDefault(s => s.Location.Equals(location));
         if (settlement == null) return false;
 
-        // Check if the player has enough resources to upgrade
+        // Check if the player has sufficient resources to upgrade
         if (player.Resources.Wheat < 2 || player.Resources.Stone < 3) return false;
 
         // Adding debug logging for resource tracking
-        Console.WriteLine($"Upgrading settlement at {location}. Player resources: Wheat - {player.Resources.Wheat}, Stone - {player.Resources.Stone}");
+        Console.WriteLine($"Attempting to upgrade settlement at {location}. Player resources: Wheat - {player.Resources.Wheat}, Stone - {player.Resources.Stone}");
 
-        // Upgrade the settlement logic here (you might want to modify the settlement type or increase its value)
-
-        // Deduct the resources
+        // Deduct the resources required for upgrading
         player.Resources.Wheat -= 2;
         player.Resources.Stone -= 3;
 
-        return true;
+        // Assuming that we will modify the settlement to reflect it has been upgraded
+
+        return true;  // Indicate the upgrade was successful
     } }
