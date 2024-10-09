@@ -11,11 +11,9 @@ public class Player
         settlements = new List<Settlement>();
         MaxSettlements = 5; // Default Max Settlements
     }
-
-    public void AddSettlement(Settlement settlement)
-    {
-        settlements.Add(settlement);
-    }
+    public void AddSettlement(Settlement settlement) {
+    settlements.Add(settlement);
+}
     public int SettlementCount()
     {
         return settlements.Count;
@@ -54,15 +52,36 @@ public void BuildSettlement(Settlement location) {
             return true;
         }
     public bool TryBuildSettlement(Location location) {
-    if (CanBuildSettlement(location) && HasResourcesForSettlement()) {
-        var newSettlement = new Settlement(location, this);
-        AddSettlement(newSettlement);
-        // Deduct resources
-        Resources.Wood -= 1;
-        Resources.Brick -= 1;
-        Resources.Wheat -= 1;
-        return true;
-    }
-    return false;
+    // Validate location
+    if (!IsLocationValid(location)) return false;
+
+    // Check if the player has enough resources
+    if (!HasEnoughResourcesForSettlement()) return false;
+
+    // Check for existing settlements
+    if (HasSettlementAt(location)) return false;
+
+    // Logic to deduct resources and create the new settlement
+    DeductResourcesForSettlement();
+
+    // Create a new Settlement object, passing in the current player
+    Settlement newSettlement = new Settlement(location, this);
+    AddSettlement(newSettlement);
+    return true;
+}
+    public bool IsLocationValid(Location location)
+{
+    // Assuming you have access to settlements to validate the location against them.
+    return settlements.Any(s => s.Location.Equals(location));
+}
+    public bool HasEnoughResourcesForSettlement()
+{
+    return Resources.Wood >= 1 && Resources.Brick >= 1 && Resources.Wheat >= 1;
+}
+    public void DeductResourcesForSettlement()
+{
+    Resources.Wood -= 1;
+    Resources.Brick -= 1;
+    Resources.Wheat -= 1;
 }
 }
