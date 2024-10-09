@@ -23,18 +23,16 @@ public class TryUpgradeSettlementTests
 
     [Fact] 
     public void CanUpgradeSettlementToCity() { /* Arrange logic */ }
-
     [Theory]
-    [InlineData(0, 0)]
-    [InlineData(1, 1)]
-    [Trait("HasTicket", "Id-822fc64b-7823-4d42-b8db-8399e616d86d")]
-    public void BuildSettlement(int x, int y)
-    {
-        var location = new Location(x, y);
-        var settlement = new Settlement(location, player);
-        player.BuildSettlement(settlement);
-        Assert.Contains(settlement, player.Settlements); // Fixed assert
-    }
+[InlineData(0, 0)]
+[InlineData(1, 1)]
+[Trait("HasTicket", "Id-8f5efd1b-2ba6-4c2b-9441-490c706db749")]public void BuildSettlement(int x, int y)
+{
+    var location = new Location(x, y);
+    var settlement = new Settlement(location, player);
+    Assert.True(player.TryBuildSettlement(location)); // Assert improved
+    Assert.Contains(settlement, player.Settlements);
+}
 
     [Fact]
     [Trait("HasTicket", "Id-822fc64b-7823-4d42-b8db-8399e616d86d")]
