@@ -45,7 +45,7 @@ public class TryUpgradeSettlementTests
     [Theory]
     [InlineData(0, 0)]
     [InlineData(1, 1)]
-[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]    public void BuildSettlement(int x, int y)
+[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void BuildSettlement(int x, int y)
     {
         var location = new Location(x, y);
         var settlement = new Settlement(location, player);
@@ -102,7 +102,7 @@ public class TryUpgradeSettlementTests
         Assert.False(result);
     }
     [Fact]
-[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]    public void CanBuildSettlementWithSufficientResources()
+[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         var player = new Player();
@@ -126,7 +126,7 @@ public class TryUpgradeSettlementTests
         Assert.False(result);
     }
     [Fact]
-[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]    public void CannotUpgradeSettlementWithInsufficientResources()
+[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void CannotUpgradeSettlementWithInsufficientResources()
     {
         // Arrange
         var player = new Player();

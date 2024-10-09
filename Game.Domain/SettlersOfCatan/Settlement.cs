@@ -25,8 +25,6 @@ public class Settlement
     return true; // Indicate success
 }
     private bool CanUpgradeSettlementResources() {
-    // Implement the logic to check if resources are sufficient for upgrading.
-    // For now, returning true as a placeholder.
-    return true;
+    return Owner.Resources.HasSufficientResources(1, 1); // Assuming 1 Wheat and 1 Stone are needed to upgrade
 }
 }
