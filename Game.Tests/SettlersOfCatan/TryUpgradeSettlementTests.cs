@@ -25,7 +25,7 @@ public class TryUpgradeSettlementTests
     [Theory]
     [InlineData(0, 0)]
     [InlineData(1, 1)]
-[Trait("HasTicket", "Id-b0303bbe-8709-4b54-994d-0bcfae4485ea")]public void BuildSettlement(int x, int y)
+[Trait("HasTicket", "Id-822fc64b-7823-4d42-b8db-8399e616d86d")]public void BuildSettlement(int x, int y)
     {
         var location = new Location(x, y);
         var settlement = new Settlement(location);
@@ -33,7 +33,7 @@ public class TryUpgradeSettlementTests
         Assert.True(player.Settlements.Contains(settlement));
     }
     [Fact]
-[Trait("HasTicket", "Id-b0303bbe-8709-4b54-994d-0bcfae4485ea")]public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
+[Trait("HasTicket", "Id-822fc64b-7823-4d42-b8db-8399e616d86d")]public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
     {
         var resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
         player.Resources = resources;
@@ -44,11 +44,5 @@ public class TryUpgradeSettlementTests
         var result = settlement.UpgradeToCity(player);
 
         Assert.True(result);
-    }
-    [Fact]
-    public void Setup() {
-        player = new Player();
-        player.Resources = new Resources(2, 2, 2, 0, 0); // Assign sufficient resources
-        // Optionally add a default settlement for other tests if necessary
     }
 }

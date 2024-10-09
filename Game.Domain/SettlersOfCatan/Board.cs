@@ -66,4 +66,7 @@ public bool TryUpgradeSettlement(Player player, Location location) {
     // Additional upgrade logic here
     // Return true if upgrade was successful
     return true;
-} }
+}     public bool IsLocationValid(Location location) {
+    return IsValidLocation(location) && !IsOccupied(location);
+}
+}

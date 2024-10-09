@@ -36,4 +36,20 @@ public class Settlement
         // Assuming the method checks for sufficient resources and location availability
         return player.HasResourcesForSettlement() && player.CanPlaceSettlement(Location);
     }
+    public bool CanBuildSettlement(Player player, Location location)
+{
+    return player.Resources.HasResources(ResourceType.Wood, 1) && player.Resources.HasResources(ResourceType.Brick, 1) 
+        && !player.HasSettlementAt(location) && Board.IsLocationValid(location);
+}
+    public bool HasSettlementAt(Location location)
+{
+    return Settlements.Any(s => s.Location.Equals(location));
+}
+    public bool IsLocationValid(Location location)
+    {
+        return Board.IsValidLocation(location);
+    }
+    public Board Board { get; set; } = new Board();
+    public Player Player { get; set; } = new Player();
+    public List<Settlement> Settlements { get; set; } = new List<Settlement>();
 }
