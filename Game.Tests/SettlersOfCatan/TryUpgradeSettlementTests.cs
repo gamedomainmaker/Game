@@ -10,13 +10,16 @@ public class TryUpgradeSettlementTests
     public TryUpgradeSettlementTests() {
         Setup();
     }
-
     private void Setup()
-    {
-        player = new Player();
-        player.Resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
-        settlements = new List<Settlement>();
-    }
+{
+    player = new Player();
+    player.Resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
+    settlements = new List<Settlement>();
+    // Initialize a settlement for testing
+    var location = new Location(0, 0);
+    var settlement = new Settlement(location, player);
+    settlements.Add(settlement);
+}
 
     [Fact] 
     public void CanUpgradeSettlementToCity() { /* Arrange logic */ }

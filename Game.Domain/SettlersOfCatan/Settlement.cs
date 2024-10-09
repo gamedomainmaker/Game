@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Game.Domain
 {
     public class Settlement
@@ -8,13 +6,17 @@ namespace Game.Domain
         public Settlement(Location location, Player player)
         {
             Location = location;
-            player.Settlements.Add(this); // Assumes player.Settlements is writable
+            player.Settlements.Add(this);
         }
 
         public bool UpgradeToCity(Player player)
         {
-            // Upgrade logic implementation
-            return true; // Placeholder for successful upgrade
+            // Add upgrade checks here (e.g., resource validation)
+            if (player.Resources.CanAffordCityUpgrade()) {
+                // Perform upgrade
+                return true;
+            }
+            return false; // Indicate that upgrade cannot occur
         }
     }
 }
