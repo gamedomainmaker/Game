@@ -19,4 +19,14 @@ public class Settlement
     Owner = owner ?? throw new ArgumentNullException(nameof(owner));
 }
     public Player Owner { get; private set; }
+    public bool TryUpgradeSettlement(Player player) {
+    if (!CanUpgradeSettlementResources()) return false; // Ensure resource validation
+    // Logic to upgrade settlement to city
+    return true; // Indicate success
+}
+    private bool CanUpgradeSettlementResources() {
+    // Implement the logic to check if resources are sufficient for upgrading.
+    // For now, returning true as a placeholder.
+    return true;
+}
 }

@@ -25,10 +25,12 @@ public class Player
     if (settlement.Owner != this) return false; // Only the owner can upgrade
     return CanUpgradeSettlementResources(); // Check resources and conditions
 }
-    private bool CanUpgradeSettlementResources() {
-    // Logic to check if the player has enough resources to upgrade a settlement
-    // This is a placeholder implementation
-    return Resources.Wheat >= 2 && Resources.Stone >= 1;
+    public bool CanUpgradeSettlementResources() {
+    // Checking cumulative resources required for upgrading
+    if (Resources.Wheat < 2 || Resources.Stone < 1) {
+        return false;
+    }
+    return true;
 }
     // Implement other members
 }
