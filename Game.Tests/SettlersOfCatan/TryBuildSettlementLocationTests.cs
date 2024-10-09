@@ -2,6 +2,7 @@ using Game.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Xunit.Abstractions;
 
 namespace Game.Tests;
 
@@ -13,12 +14,11 @@ public class TryBuildSettlementLocationTests
 
     private readonly ILogger<Board> _logger;
 
-    public TryBuildSettlementLocationTests()
+    public TryBuildSettlementLocationTests(ITestOutputHelper output)
     {
         // Configure Serilog to log to both console and file
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .WriteTo.File("logs/test-log-.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.Sink(new XunitSink(output)) // Use custom sink
             .CreateLogger();
 
         // Configure logging for the test
@@ -64,5 +64,20 @@ public class TryBuildSettlementLocationTests
 
         // Assert
         Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
+    }
+
+    [Fact]
+    public void CanBuildSettlementOnLocation()
+    {
+        // Arrange
+        player1 = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
+        var board = new Board(_logger);
+        var location = new Location(3, 3);
+
+        // Act
+        var result = board.TryBuildSettlement(player1, location);
+
+        // Assert
+        Assert.True(result, "Player 1 was not able to build a settlement.");
     }
 }

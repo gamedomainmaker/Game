@@ -2,6 +2,7 @@ using Game.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Xunit.Abstractions;
 
 namespace Game.Tests.SettlersOfCatan;
 
@@ -11,12 +12,11 @@ public class TryUpgradeSettlementTests
     private List<Settlement> settlements { get; set; } = new List<Settlement>();
     private readonly ILogger<Board> _logger;
 
-    public TryUpgradeSettlementTests()
+    public TryUpgradeSettlementTests(ITestOutputHelper output)
     {
         // Configure Serilog to log to both console and file
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .WriteTo.File("logs/test-log-.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.Sink(new XunitSink(output)) // Use custom sink
             .CreateLogger();
 
         // Configure logging for the test

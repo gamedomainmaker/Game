@@ -2,6 +2,7 @@ using Game.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Xunit.Abstractions;
 
 namespace Game.Tests;
 
@@ -10,12 +11,11 @@ public class TryBuildSettlementResourceTests
     private Player? player;
     private readonly ILogger<Board> _logger;
 
-    public TryBuildSettlementResourceTests()
+    public TryBuildSettlementResourceTests(ITestOutputHelper output)
     {
         // Configure Serilog to log to both console and file
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .WriteTo.File("logs/test-log-.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.Sink(new XunitSink(output)) // Use custom sink
             .CreateLogger();
 
         // Configure logging for the test
