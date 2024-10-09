@@ -45,4 +45,8 @@ public List<Settlement> Settlements { get { return settlements; } } public strin
         // Implement that logic here
         return true; // Placeholder logic
     }
+    public bool CanBuildSettlement(Location location)
+    {
+        return HasResourcesForSettlement() && CanPlaceSettlement(location);
+    }
 }
