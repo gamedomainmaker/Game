@@ -8,7 +8,7 @@ public class Settlement
     {
         Location = location;
     }
-public bool CanUpgradeToCity(Player player) {
+    public bool CanUpgradeToCity(Player player) {
     // Check if the player has a settlement at this location
     if (player.HasSettlementAt(this.Location)) {
         // Validate that the player has enough resources to upgrade

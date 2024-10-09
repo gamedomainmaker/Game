@@ -36,7 +36,6 @@ public class TryUpgradeSettlementTests
     [Fact] public void TestUpgradeSettlementWithSufficientResources() { /* Arrange logic */ }
     [Fact]
     [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
-    [Trait("HasTicket", "Id-fc07bedc-f4ac-4ad7-9e8a-00ffca2d8a74")]
     [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
     [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
     public void TestBuildSettlement()
@@ -48,7 +47,6 @@ public class TryUpgradeSettlementTests
     }
     [Fact]
     [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
-    [Trait("HasTicket", "Id-fc07bedc-f4ac-4ad7-9e8a-00ffca2d8a74")]
     [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
     [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
     public void TestAnotherBuildSettlement()
@@ -59,7 +57,6 @@ public class TryUpgradeSettlementTests
     }
     [Fact]
     [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
-    [Trait("HasTicket", "Id-fc07bedc-f4ac-4ad7-9e8a-00ffca2d8a74")]
     [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
     [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
     public void Correctly_Builds_Settlement_At_Location()
@@ -71,7 +68,6 @@ public class TryUpgradeSettlementTests
     }
     [Fact]
     [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
-    [Trait("HasTicket", "Id-fc07bedc-f4ac-4ad7-9e8a-00ffca2d8a74")]
     [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
     [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
     public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
@@ -81,9 +77,7 @@ public class TryUpgradeSettlementTests
         player.BuildSettlement(settlement);
         // Additional logic for upgrading settlement goes here.
     }
-    [Fact]
-    public void Setup()
-    {
+    [Fact] public void Setup() {
         player = new Player();
     }
 }
