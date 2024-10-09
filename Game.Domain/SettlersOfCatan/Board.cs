@@ -49,6 +49,9 @@ public bool TryUpgradeSettlement(Player player, Location location)
         // Check if the player has enough resources to upgrade
         if (player.Resources.Wheat < 2 || player.Resources.Stone < 3) return false;
 
+        // Adding debug logging for resource tracking
+        Console.WriteLine($"Upgrading settlement at {location}. Player resources: Wheat - {player.Resources.Wheat}, Stone - {player.Resources.Stone}");
+
         // Upgrade the settlement logic here (you might want to modify the settlement type or increase its value)
 
         // Deduct the resources

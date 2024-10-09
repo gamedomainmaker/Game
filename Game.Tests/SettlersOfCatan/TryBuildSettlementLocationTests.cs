@@ -7,9 +7,7 @@ public class TryBuildSettlementLocationTests
     private Player? player;
     private Player? player1;
     private Player? player2;
-
-    [Fact]
-    public void CannotBuildSettlementOnInvalidLocation()
+[Fact]    public void CannotBuildSettlementOnInvalidLocation()
     {
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
@@ -23,9 +21,7 @@ public class TryBuildSettlementLocationTests
         // Assert
         Assert.False(result, "Player was able to build a settlement on an invalid location.");
     }
-
-    [Fact]
-    public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
+[Fact]    public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
     {
         // Arrange
         player1 = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
