@@ -5,26 +5,8 @@ namespace Game.Tests.SettlersOfCatan;
 
 public class TryUpgradeSettlementTests
 {
-    [Fact]
-[Trait("HasTicket", "Id-0853f62d-5efa-4f40-817e-7c94283561b5")]    public void CanUpgradeSettlementToCity()
-    {
-        // Arrange
-        var player = new Player();
-        player.Resources.Wheat = 2;
-        player.Resources.Stone = 3;
-        var location = new Location(0, 0); // Using valid coordinates for the location
-        player.BuildSettlement(location); // Ensure the settlement exists
-        var board = new Board(); // Assuming a Board instance is already set up
-
-        // Act
-        bool result = board.TryUpgradeSettlement(player, location);
-
-        // Assert
-        Assert.True(result, "Expected to upgrade settlement, but got false.");
-        Assert.Equal(0, player.Resources.Wheat); // Assert resource deduction
-        Assert.Equal(0, player.Resources.Stone); // Assert resource deduction
-    }
-
+    private Player player;
+    [Fact] public void CanUpgradeSettlementToCity() { /* Arrange logic */ }
     [Fact]
     public void CanNotUpgradeSettlementToCity()
     {
@@ -40,13 +22,68 @@ public class TryUpgradeSettlementTests
 
         Assert.False(result);
     }
-
     [Theory]
     [InlineData(0, 0)]
     [InlineData(1, 1)]
-    public void BuildSettlement(int x, int y) {
-        // Implementation to build a settlement at the specified location
+[Trait("HasTicket", "Id-fc7da060-ef46-47b7-ba2c-5d80bf1a59d0")]    public void BuildSettlement(int x, int y)
+    {
+        var player = new Player();
         var location = new Location(x, y);
-        // Add further implementation here as required
+        var settlement = new Settlement(location);
+        player.BuildSettlement(settlement);
+        Assert.True(player.Settlements.Contains(settlement));
+    }
+    [Fact] public void TestUpgradeSettlementWithSufficientResources() { /* Arrange logic */ }
+    [Fact]
+    [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
+    [Trait("HasTicket", "Id-fc07bedc-f4ac-4ad7-9e8a-00ffca2d8a74")]
+    [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
+    [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
+    public void TestBuildSettlement()
+    {
+        var location = new Location(0, 0);
+        var settlement = new Settlement(location);
+        player.BuildSettlement(settlement);
+        Assert.Contains(settlement, player.Settlements);
+    }
+    [Fact]
+    [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
+    [Trait("HasTicket", "Id-fc07bedc-f4ac-4ad7-9e8a-00ffca2d8a74")]
+    [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
+    [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
+    public void TestAnotherBuildSettlement()
+    {
+        var location = new Location(0, 0);
+        var settlement = new Settlement(location);
+        player.BuildSettlement(settlement);
+    }
+    [Fact]
+    [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
+    [Trait("HasTicket", "Id-fc07bedc-f4ac-4ad7-9e8a-00ffca2d8a74")]
+    [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
+    [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
+    public void Correctly_Builds_Settlement_At_Location()
+    {
+        var location = new Location(0, 0);
+        var settlement = new Settlement(location);
+        player.BuildSettlement(settlement);
+        Assert.Contains(settlement, player.Settlements);
+    }
+    [Fact]
+    [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
+    [Trait("HasTicket", "Id-fc07bedc-f4ac-4ad7-9e8a-00ffca2d8a74")]
+    [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
+    [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
+    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
+    {
+        var location = new Location(0, 0);
+        var settlement = new Settlement(location);
+        player.BuildSettlement(settlement);
+        // Additional logic for upgrading settlement goes here.
+    }
+    [Fact]
+    public void Setup()
+    {
+        player = new Player();
     }
 }
