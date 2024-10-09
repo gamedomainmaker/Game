@@ -29,8 +29,7 @@ public class TryBuildSettlementResourceTests
         _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
     }
     [Fact]
-    [Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]
-    public void CannotBuildSettlementWithoutNecessaryResources()
+[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CannotBuildSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(0, 0, 0, 0, 0) };
@@ -46,8 +45,7 @@ public class TryBuildSettlementResourceTests
     }
 
     [Fact]
-    [Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]
-    public void CanBuildSettlementWithSufficientResources()
+[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player();
@@ -62,8 +60,7 @@ public class TryBuildSettlementResourceTests
     }
 
     [Fact]
-    [Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]
-    public void CannotBuildTwoSettlementWithoutNecessaryResources()
+[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CannotBuildTwoSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
