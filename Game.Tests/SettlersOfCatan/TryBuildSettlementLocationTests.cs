@@ -31,22 +31,21 @@ public class TryBuildSettlementLocationTests
 
         _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
     }
-
     [Fact]
-    public void CannotBuildSettlementOnInvalidLocation()
-    {
-        // Arrange
-        player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
+public void CannotBuildSettlementOnInvalidLocation()
+{
+    // Arrange
+    player = new Player { Name = "Player1", Resources = new Resources(1, 1, 1, 1, 0) };
 
-        var board = new Board(_logger);
-        var invalidLocation = new Location(-1, -1);
+    var board = new Board(_logger);
+    var invalidLocation = new Location(-1, -1);
 
-        // Act
-        var result = board.TryBuildSettlement(player, invalidLocation);
+    // Act
+    var result = board.TryBuildSettlement(player, invalidLocation);
 
-        // Assert
-        Assert.False(result, "Player was able to build a settlement on an invalid location.");
-    }
+    // Assert
+    Assert.False(result, "Player was able to build a settlement on an invalid location.");
+}
     [Fact]
     public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
     {

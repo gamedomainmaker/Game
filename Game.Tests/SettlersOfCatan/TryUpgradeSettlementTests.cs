@@ -52,14 +52,18 @@ public class TryUpgradeSettlementTests
         Assert.True(player.TryBuildSettlement(location)); // Assert improved
         Assert.Contains(settlement, player.Settlements);
     }
-    [Fact]
-[Trait("HasTicket", "Id-5fa20b41-09d7-42c7-b284-96386310bfb9")]public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
-    Player player = new Player();
+    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
+    // Arrange
     player.Resources.Wood = 2;
     player.Resources.Brick = 1;
     player.Resources.Wheat = 1;
-    // Logic to build and then upgrade settlement...
-    Assert.True(player.CanUpgradeSettlement()); // Assuming this checks if upgrade is possible based on resources.
+    var location = new Location(0, 0);
+    var settlement = new Settlement(location, player);
+    player.TryBuildSettlement(location); // Ensure the settlement is built
+    // Act
+    var result = player.CanUpgradeSettlement(settlement);
+    // Assert
+    Assert.True(result);
 }
 
     [Fact]
@@ -156,5 +160,4 @@ public class TryUpgradeSettlementTests
                                                          // Assert
         Assert.IsType<Resources>(player.Resources);
     }
-    public Resources Resources { get; private set; } = new Resources(0, 0, 0, 0, 0);
 }
