@@ -16,14 +16,14 @@ public class Resources
     public int Wheat { get; set; }
     public int Sheep { get; set; }
     public int Stone { get; set; }
-
-    public Resources(int wood, int brick, int wheat, int sheep, int stone) {
-        Wood = wood;
-        Brick = brick;
-        Wheat = wheat;
-        Sheep = sheep;
-        Stone = stone;
-    }
+    public Resources(int wheat, int brick, int ore, int stone, int wood)
+{
+    Wheat = wheat;
+    Brick = brick;
+    Ore = ore;
+    Stone = stone;
+    Wood = wood;
+}
 
     public bool HasResources(ResourceType resourceType, int amount)
     {
@@ -43,4 +43,5 @@ public class Resources
                 throw new ArgumentException("Invalid resource type");
         }
     }
+    public int Ore { get; set; }
 }

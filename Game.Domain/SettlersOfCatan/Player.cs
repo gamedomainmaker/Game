@@ -47,7 +47,10 @@ public void BuildSettlement(Settlement location) {
         return true; // Placeholder logic
     }
     public bool CanBuildSettlement(Location location)
-    {
-        return HasResourcesForSettlement() && CanPlaceSettlement(location);
-    }
+        {
+            if (Settlements.Any(s => s.Location.Equals(location)))
+                return false;
+            // Additional logic for checking resources...
+            return true;
+        }
 }

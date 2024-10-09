@@ -19,7 +19,7 @@ public class TryBuildSettlementResourceTests
         // Assert
         Assert.False(result, "Player was able to build a settlement without the necessary resources.");
     }
-[Fact]public void CanBuildSettlementWithSufficientResources()
+[Fact][Trait("HasTicket", "Id-ebc36372-78d7-4569-b6e1-442a698d47b4")]public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player
@@ -52,7 +52,7 @@ public class TryBuildSettlementResourceTests
         // Assert
         Assert.False(result, "Player was able to build a settlement without the necessary resources.");
     }
-[Fact]public void CanBuildTwoSettlementWithSufficientResources()
+[Fact][Trait("HasTicket", "Id-ebc36372-78d7-4569-b6e1-442a698d47b4")]public void CanBuildTwoSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player
