@@ -8,19 +8,32 @@ public class Settlement
     {
         Location = location;
     }
-    public bool CanUpgradeToCity(Player player) {
-    // Check if the player has a settlement at this location
-    if (player.HasSettlementAt(this.Location)) {
-        // Validate that the player has enough resources to upgrade
-        return player.Resources.Wheat >= 2 && player.Resources.Stone >= 3;
+
+    public bool CanUpgradeToCity(Player player)
+    {
+        // Check if the player has a settlement at this location
+        if (player.HasSettlementAt(this.Location))
+        {
+            // Validate that the player has enough resources to upgrade
+            return player.Resources.Wheat >= 2 && player.Resources.Stone >= 3;
+        }
+        return false;
     }
-    return false;
+
+    public bool UpgradeToCity(Player player)
+    {
+        if (CanUpgradeToCity(player))
+        {
+            player.Resources.Wheat -= 2;
+            player.Resources.Stone -= 3;
+            return true;
+        }
+        return false;
+    }
+
+    public bool BuildSettlement(Player player)
+    {
+        // Assuming the method checks for sufficient resources and location availability
+        return player.HasResourcesForSettlement() && player.CanPlaceSettlement(Location);
+    }
 }
-public bool UpgradeToCity(Player player) {
-    if (CanUpgradeToCity(player)) {
-        player.Resources.Wheat -= 2;
-        player.Resources.Stone -= 3;
-        return true;
-    }
-    return false;
-} }

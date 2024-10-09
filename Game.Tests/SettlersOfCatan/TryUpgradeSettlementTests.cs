@@ -25,57 +25,25 @@ public class TryUpgradeSettlementTests
     [Theory]
     [InlineData(0, 0)]
     [InlineData(1, 1)]
-[Trait("HasTicket", "Id-fc7da060-ef46-47b7-ba2c-5d80bf1a59d0")]    public void BuildSettlement(int x, int y)
+[Trait("HasTicket", "Id-b0303bbe-8709-4b54-994d-0bcfae4485ea")]    public void BuildSettlement(int x, int y)
     {
-        var player = new Player();
         var location = new Location(x, y);
         var settlement = new Settlement(location);
         player.BuildSettlement(settlement);
         Assert.True(player.Settlements.Contains(settlement));
     }
-    [Fact] public void TestUpgradeSettlementWithSufficientResources() { /* Arrange logic */ }
     [Fact]
-    [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
-    [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
-    [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
-    public void TestBuildSettlement()
+[Trait("HasTicket", "Id-b0303bbe-8709-4b54-994d-0bcfae4485ea")]    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
     {
+        var resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
+        player.Resources = resources;
         var location = new Location(0, 0);
+
         var settlement = new Settlement(location);
         player.BuildSettlement(settlement);
-        Assert.Contains(settlement, player.Settlements);
-    }
-    [Fact]
-    [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
-    [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
-    [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
-    public void TestAnotherBuildSettlement()
-    {
-        var location = new Location(0, 0);
-        var settlement = new Settlement(location);
-        player.BuildSettlement(settlement);
-    }
-    [Fact]
-    [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
-    [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
-    [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
-    public void Correctly_Builds_Settlement_At_Location()
-    {
-        var location = new Location(0, 0);
-        var settlement = new Settlement(location);
-        player.BuildSettlement(settlement);
-        Assert.Contains(settlement, player.Settlements);
-    }
-    [Fact]
-    [Trait("HasTicket", "Id-aa642966-f4b6-4fd6-bf3d-f69693501659")]
-    [Trait("HasTicket", "Id-da7b002c-d121-44ed-99bd-ea4d838989ed")]
-    [Trait("HasTicket", "Id-63e5ba60-dbde-4c3e-bc43-76ec8f931c1a")]
-    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
-    {
-        var location = new Location(0, 0);
-        var settlement = new Settlement(location);
-        player.BuildSettlement(settlement);
-        // Additional logic for upgrading settlement goes here.
+        var result = settlement.UpgradeToCity(player);
+
+        Assert.True(result);
     }
     [Fact] public void Setup() {
         player = new Player();

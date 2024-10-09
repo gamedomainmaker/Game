@@ -35,4 +35,14 @@ public List<Settlement> Settlements { get { return settlements; } } public strin
         return true;
     }
     return false;
-} }
+}     public bool HasResourcesForSettlement()
+    {
+        return Resources.Wood >= 1 && Resources.Brick >= 1 && Resources.Wheat >= 1;
+    }
+    public bool CanPlaceSettlement(Location location)
+    {
+        // Assuming you have some logic to check if a settlement can be placed at the location
+        // Implement that logic here
+        return true; // Placeholder logic
+    }
+}
