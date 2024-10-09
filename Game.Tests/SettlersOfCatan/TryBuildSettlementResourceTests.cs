@@ -8,7 +8,7 @@ public class TryBuildSettlementResourceTests
     private Player? player;
 
     [Fact]
-[Trait("HasTicket", "Id-8f5efd1b-2ba6-4c2b-9441-490c706db749")]    public void CannotBuildSettlementWithoutNecessaryResources()
+[Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]public void CannotBuildSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(0, 0, 0, 0, 0) };
@@ -24,7 +24,7 @@ public class TryBuildSettlementResourceTests
     }
 
     [Fact]
-[Trait("HasTicket", "Id-8f5efd1b-2ba6-4c2b-9441-490c706db749")]    public void CanBuildSettlementWithSufficientResources()
+[Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player();
@@ -39,7 +39,7 @@ public class TryBuildSettlementResourceTests
     }
 
     [Fact]
-[Trait("HasTicket", "Id-8f5efd1b-2ba6-4c2b-9441-490c706db749")]    public void CannotBuildTwoSettlementWithoutNecessaryResources()
+[Trait("HasTicket", "Id-74ad39d7-60bd-4aa4-bcb3-9749b7427a45")]public void CannotBuildTwoSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };

@@ -16,11 +16,9 @@ namespace Game.Domain
     }
     return false;
 }
-    public bool IsLocationValid(Location location)
-    {
-        // Check if the location is on valid terrain and not near another settlement.
-        // For the sake of example, this is a stubbed implementation.
-        return true; // Update with actual logic.
-    }
+    public bool IsLocationValid(Location location) {
+    // Logic to validate if the location is free
+    return true; // Placeholder for validation logic
+}
     }
 }

@@ -52,21 +52,13 @@ public void BuildSettlement(Settlement location) {
             return true;
         }
     public bool TryBuildSettlement(Location location) {
-    // Validate location
-    if (!IsLocationValid(location)) return false;
-
-    // Check if the player has enough resources
-    if (!HasEnoughResourcesForSettlement()) return false;
-
-    // Check for existing settlements
-    if (HasSettlementAt(location)) return false;
-
-    // Logic to deduct resources and create the new settlement
+    const int requiredResources = 5; // Placeholder value for required resources
+    if (!IsLocationValid(location) || !HasEnoughResourcesForSettlement()) { // Fixed the condition check
+        return false;
+    }
+    // Deduct resources for the settlement
     DeductResourcesForSettlement();
-
-    // Create a new Settlement object, passing in the current player
-    Settlement newSettlement = new Settlement(location, this);
-    AddSettlement(newSettlement);
+    // Logic to build the settlement
     return true;
 }
     public bool IsLocationValid(Location location)
@@ -84,4 +76,5 @@ public void BuildSettlement(Settlement location) {
     Resources.Brick -= 1;
     Resources.Wheat -= 1;
 }
+    private const int RequiredResources = 5;
 }

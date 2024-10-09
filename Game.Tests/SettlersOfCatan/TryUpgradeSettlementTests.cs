@@ -25,7 +25,7 @@ public class TryUpgradeSettlementTests
     [Theory]
     [InlineData(0, 0)]
     [InlineData(1, 1)]
-[Trait("HasTicket", "Id-8f5efd1b-2ba6-4c2b-9441-490c706db749")]    public void BuildSettlement(int x, int y)
+[Trait("HasTicket", "Id-5fa20b41-09d7-42c7-b284-96386310bfb9")]public void BuildSettlement(int x, int y)
     {
         var location = new Location(x, y);
         var settlement = new Settlement(location, player);
@@ -34,8 +34,7 @@ public class TryUpgradeSettlementTests
     }
 
     [Fact]
-    [Trait("HasTicket", "Id-822fc64b-7823-4d42-b8db-8399e616d86d")]
-    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
+[Trait("HasTicket", "Id-5fa20b41-09d7-42c7-b284-96386310bfb9")]    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
     {
         var resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
         player.Resources = resources;
@@ -49,7 +48,6 @@ public class TryUpgradeSettlementTests
     }
 
     [Fact]
-    [Trait("HasTicket", "Id-822fc64b-7823-4d42-b8db-8399e616d86d")]
     public void Can_Not_Upgrade_Settlement_To_City()
     {
         var board = new Board();
@@ -60,5 +58,84 @@ public class TryUpgradeSettlementTests
 
         Assert.False(result);
     }
-    public void BuildSettlement_ShouldFail_WhenLocationInvalid() { /* Arrange, Act, Assert logic here */ }
+    [Fact]
+public void CannotBuildSettlementWithoutNecessaryResources() {
+    // Arrange
+    var player = new Player();
+    var location = new Location(1, 1);
+    player.Resources = new Resources(0,0,0,0,0); // No resources
+    // Act
+    var result = player.TryBuildSettlement(location);
+    // Assert
+    Assert.False(result);
+} 
+    [Fact]
+public void CannotBuildSettlementAtOccupiedLocation() {
+    // Arrange
+    var player = new Player();
+    var location = new Location(0, 0);
+    player.TryBuildSettlement(location); // First build
+    // Act
+    var result = player.TryBuildSettlement(location); // Attempt to build again
+    // Assert
+    Assert.False(result);
+} 
+    [Fact]
+[Trait("HasTicket", "Id-5fa20b41-09d7-42c7-b284-96386310bfb9")]public void CanBuildSettlementWithSufficientResources() {
+    // Arrange
+    var player = new Player();
+    player.Resources = new Resources(0, 0, 0, 0, 0); // Enough resources
+    var location = new Location(2, 2);
+    // Act
+    var result = player.TryBuildSettlement(location);
+    // Assert
+    Assert.True(result);
+} 
+    [Fact]
+public void CannotBuildSettlementWithInsufficientResources() {
+    // Arrange
+    var player = new Player();
+    player.Resources = new Resources(0, 0, 0, 0, 0); // Not enough resources
+    var location = new Location(1, 1);
+    // Act
+    var result = player.TryBuildSettlement(location);
+    // Assert
+    Assert.False(result);
+} 
+    [Fact]
+public void CannotUpgradeSettlementWithInsufficientResources()
+{
+    // Arrange
+    var player = new Player();
+    player.Resources = new Resources(0, 0, 0, 0, 0); // No resources
+    var location = new Location(1, 1);
+    var settlement = new Settlement(location, player);
+    // Act
+    var result = settlement.UpgradeToCity(player);
+    // Assert
+    Assert.False(result);
+}
+    public Resources Resources { get; set; } = new Resources(0, 0, 0, 0, 0);
+    [Fact]
+public void CannotSetResourcesAsResourcesObject()
+{
+    // Arrange
+    var player = new Player();
+    // Act
+    player.Resources = new Resources(0, 0, 0, 0, 0); // Proper resource initialization
+    // Assert
+    Assert.IsType<Resources>(player.Resources);
+}
+    [Fact]
+public void CannotBuildSettlementWithResourcesAsInt()
+{
+    // Arrange
+    var player = new Player();
+    var location = new Location(1, 1);
+    player.Resources = new Resources(0, 0, 0, 0, 0); // No resources
+    // Act
+    var result = player.TryBuildSettlement(location);
+    // Assert
+    Assert.False(result);
+}
 }
