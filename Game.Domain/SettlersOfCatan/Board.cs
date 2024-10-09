@@ -39,28 +39,31 @@ public class Board
     {
         return Settlements.Any(s => s.Location.Equals(location));
     }
-public bool TryUpgradeSettlement(Player player, Location location)
-{
-    // Check if the player has enough resources
-    if (player.Resources.Wheat < 2 || player.Resources.Stone < 3)
-    {
-        Console.WriteLine("Insufficient resources for upgrade.");
+public bool TryUpgradeSettlement(Player player, Location location) {
+    // Debug logging
+    Console.WriteLine($"Attempting to upgrade settlement at {location} for player {player.Name}.");
+    Console.WriteLine($"Player Resources: {player.Resources.ToString()}");
+    
+    // Check if player has enough resources
+    if (player.Resources.Wheat < 2) {
+        Console.WriteLine("Not enough Wheat.");
         return false;
     }
-
+    if (player.Resources.Stone < 3) {
+        Console.WriteLine("Not enough Stone.");
+        return false;
+    }
+    
     // Check if the player has a settlement at the specified location
-    if (!player.Settlements.Any(s => s.Location.Equals(location)))
-    {
-        Console.WriteLine("No settlement present at the specified location.");
+    if (!player.HasSettlementAt(location)) {
+        Console.WriteLine("No settlement exists at specified location.");
         return false;
     }
-
-    // Proceed with upgrade logic here...
-    // Deduct resources
+    
+    // Upgrade logic...
     player.Resources.Wheat -= 2;
     player.Resources.Stone -= 3;
-
-    // Upgrade settlement to city logic...
-    Console.WriteLine("Settlement upgraded to city.");
+    // Additional upgrade logic here
+    // Return true if upgrade was successful
     return true;
 } }

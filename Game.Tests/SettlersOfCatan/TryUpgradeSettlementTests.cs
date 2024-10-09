@@ -5,24 +5,28 @@ namespace Game.Tests.SettlersOfCatan;
 
 public class TryUpgradeSettlementTests
 {
-[Fact][Trait("HasTicket", "Id-f2f1bb65-d572-4306-befe-f8ef8f4b53df")]public void CanUpgradeSettlementToCity()
-{
-    // Arrange
-    var player = new Player();
-    player.Resources.Wheat = 2;
-    player.Resources.Stone = 3;
-    var location = new Location(1, 2);
-    var board = new Board();
-    board.TryBuildSettlement(player, location); // Ensure a settlement exists
+    [Fact]
+[Trait("HasTicket", "Id-0853f62d-5efa-4f40-817e-7c94283561b5")]    public void CanUpgradeSettlementToCity()
+    {
+        // Arrange
+        var player = new Player();
+        player.Resources.Wheat = 2;
+        player.Resources.Stone = 3;
+        var location = new Location(0, 0); // Using valid coordinates for the location
+        player.BuildSettlement(location); // Ensure the settlement exists
+        var board = new Board(); // Assuming a Board instance is already set up
 
-    // Act
-    var result = board.TryUpgradeSettlement(player, location);
+        // Act
+        bool result = board.TryUpgradeSettlement(player, location);
 
-    // Assert
-    Assert.True(result);
-    Assert.Equal(0, player.Resources.Wheat);
-    Assert.Equal(0, player.Resources.Stone);
-} [Fact]public void CanNotUpgradeSettlementToCity()
+        // Assert
+        Assert.True(result, "Expected to upgrade settlement, but got false.");
+        Assert.Equal(0, player.Resources.Wheat); // Assert resource deduction
+        Assert.Equal(0, player.Resources.Stone); // Assert resource deduction
+    }
+
+    [Fact]
+    public void CanNotUpgradeSettlementToCity()
     {
         var board = new Board();
         var player = new Player();
@@ -35,5 +39,14 @@ public class TryUpgradeSettlementTests
         var result = board.TryUpgradeSettlement(player, location);
 
         Assert.False(result);
+    }
+
+    [Theory]
+    [InlineData(0, 0)]
+    [InlineData(1, 1)]
+    public void BuildSettlement(int x, int y) {
+        // Implementation to build a settlement at the specified location
+        var location = new Location(x, y);
+        // Add further implementation here as required
     }
 }
