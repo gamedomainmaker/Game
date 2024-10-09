@@ -53,4 +53,16 @@ public void BuildSettlement(Settlement location) {
             // Additional logic for checking resources...
             return true;
         }
+    public bool TryBuildSettlement(Location location) {
+    if (CanBuildSettlement(location) && HasResourcesForSettlement()) {
+        var newSettlement = new Settlement(location, this);
+        AddSettlement(newSettlement);
+        // Deduct resources
+        Resources.Wood -= 1;
+        Resources.Brick -= 1;
+        Resources.Wheat -= 1;
+        return true;
+    }
+    return false;
+}
 }

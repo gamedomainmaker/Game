@@ -4,8 +4,8 @@ namespace Game.Tests.SettlersOfCatan;
 
 public class TryUpgradeSettlementTests
 {
-    private Player player;
-    private List<Settlement> settlements;
+    private Player player { get; set; } = new Player();
+    private List<Settlement> settlements { get; set; } = new List<Settlement>();
 
     public TryUpgradeSettlementTests() {
         Setup();
