@@ -21,8 +21,11 @@ namespace Game.Domain
         {
             return Wheat >= 2 && Stone >= 3; // Assuming costs for upgrade
         }
-    public bool HasSufficientResources(Player player, int woodNeeded, int brickNeeded) {
-        return player.Resources.Wood >= woodNeeded && player.Resources.Brick >= brickNeeded;
-    }
+    public bool HasSufficientResources(Player player, int requiredWood, int requiredBrick, int requiredWheat) {
+    return player.Resources.Wood >= requiredWood &&
+           player.Resources.Brick >= requiredBrick &&
+           player.Resources.Wheat >= requiredWheat;
+}
+    public int Ore { get; set; }
     }
 }

@@ -80,4 +80,14 @@ public void BuildCity(Settlement settlement) {
     Resources.Wheat -= 1;
 }
     private const int RequiredResources = 5;
+    public void DeductResources(int wood, int brick, int wheat) {
+    Resources.Wood -= wood;
+    Resources.Brick -= brick;
+    Resources.Wheat -= wheat;
+}
+    public bool CanUpgradeSettlement() {
+    // Check if player has enough resources for an upgrade
+    // Assuming upgrade requires 1 Wheat and 1 Ore
+    return Resources.Wheat >= 1 && Resources.Ore >= 1;
+}
 }

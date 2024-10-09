@@ -1,4 +1,4 @@
-﻿namespace Game.Tests;
+namespace Game.Tests;
 
 using Serilog.Core;
 using Serilog.Events;

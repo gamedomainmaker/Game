@@ -17,15 +17,16 @@ namespace Game.Domain
     // Logic to validate if the location is free
     return true; // Placeholder for validation logic
 }
-    public void BuildSettlement(Player player) {
-        if(HasSufficientResources(player, 1, 1)) {
-            player.Resources.Wood -= 1;
-            player.Resources.Brick -= 1;
-            // Logic to create a new settlement
-        } else {
-            throw new InvalidOperationException("Insufficient resources to build settlement.");
-        }
+    public bool BuildSettlement(Player player, int requiredWood, int requiredBrick, int requiredWheat) {
+    if (HasSufficientResources(player, requiredWood, requiredBrick)) {
+        player.Resources.Wood -= requiredWood;
+        player.Resources.Brick -= requiredBrick;
+        player.Resources.Wheat -= requiredWheat;
+        // Logic to add settlement to player's settlements...
+        return true;
     }
+    return false;
+}
     private bool HasSufficientResources(Player player, int woodRequired, int brickRequired) {
     return player.Resources.Wood >= woodRequired && player.Resources.Brick >= brickRequired;
 }
