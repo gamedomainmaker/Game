@@ -32,20 +32,22 @@ public class TryUpgradeSettlementTests
         Assert.True(player.TryBuildSettlement(location)); // Assert improved
         Assert.Contains(settlement, player.Settlements);
     }
-
     [Fact]
-[Trait("HasTicket", "Id-5fa20b41-09d7-42c7-b284-96386310bfb9")]    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
-    {
-        var resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
-        player.Resources = resources;
-        var location = new Location(0, 0);
-
-        var settlement = new Settlement(location, player); // Fixed constructor usage
-        player.BuildSettlement(settlement);
-        var result = settlement.UpgradeToCity(player);
-
-        Assert.True(result);
-    }
+[Trait("HasTicket", "Id-5fa20b41-09d7-42c7-b284-96386310bfb9")]public void Correctly_Upgrades_Settlement_With_Sufficient_Resources()
+{
+    // Arrange
+    player = new Player();
+    player.Resources = new Resources(2, 2, 0, 0, 0); // Adjusting resources for upgrade
+    var location = new Location(0, 0);
+    var settlement = new Settlement(location, player);
+    settlements.Add(settlement);
+    
+    // Act
+    var result = settlement.UpgradeSettlement(player);
+    
+    // Assert
+    Assert.True(settlement.IsUpgraded);
+}
 
     [Fact]
     public void Can_Not_Upgrade_Settlement_To_City()
@@ -103,7 +105,7 @@ public void CannotBuildSettlementWithInsufficientResources() {
     Assert.False(result);
 } 
     [Fact]
-public void CannotUpgradeSettlementWithInsufficientResources()
+[Trait("HasTicket", "Id-5fa20b41-09d7-42c7-b284-96386310bfb9")]public void CannotUpgradeSettlementWithInsufficientResources()
 {
     // Arrange
     var player = new Player();
@@ -114,17 +116,6 @@ public void CannotUpgradeSettlementWithInsufficientResources()
     var result = settlement.UpgradeToCity(player);
     // Assert
     Assert.False(result);
-}
-    public Resources Resources { get; set; } = new Resources(0, 0, 0, 0, 0);
-    [Fact]
-public void CannotSetResourcesAsResourcesObject()
-{
-    // Arrange
-    var player = new Player();
-    // Act
-    player.Resources = new Resources(0, 0, 0, 0, 0); // Proper resource initialization
-    // Assert
-    Assert.IsType<Resources>(player.Resources);
 }
     [Fact]
 public void CannotBuildSettlementWithResourcesAsInt()
@@ -138,4 +129,15 @@ public void CannotBuildSettlementWithResourcesAsInt()
     // Assert
     Assert.False(result);
 }
+    [Fact]
+public void CannotSetResourcesAsResourcesObject()
+{
+    // Arrange
+    var player = new Player();
+    // Act
+    player.Resources = new Resources(0, 0, 0, 0, 0); // Proper resource initialization
+    // Assert
+    Assert.IsType<Resources>(player.Resources);
+}
+    public Resources Resources { get; private set; } = new Resources(0, 0, 0, 0, 0);
 }

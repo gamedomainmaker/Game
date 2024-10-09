@@ -22,9 +22,11 @@ public List<Settlement> Settlements { get { return settlements; } } public strin
 {
     return Settlements.Any(s => s.Location.Equals(location));
 }
-public void BuildSettlement(Settlement location) {
-        // Implementation to build a settlement at the specified location
-    } public void BuildCity(Settlement settlement) {
+    public void BuildSettlement(Settlement settlement)
+{
+    settlements.Add(settlement);
+}
+public void BuildCity(Settlement settlement) {
     if (settlement.UpgradeToCity(this)) {
         // Logic to replace the settlement with a city
     }
@@ -45,20 +47,21 @@ public void BuildSettlement(Settlement location) {
         return true; // Placeholder logic
     }
     public bool CanBuildSettlement(Location location)
-        {
-            if (Settlements.Any(s => s.Location.Equals(location)))
-                return false;
-            // Additional logic for checking resources...
-            return true;
-        }
-    public bool TryBuildSettlement(Location location) {
-    const int requiredResources = 5; // Placeholder value for required resources
-    if (!IsLocationValid(location) || !HasEnoughResourcesForSettlement()) { // Fixed the condition check
+{
+    if (Settlements.Any(s => s.Location.Equals(location)))
+        return false;
+    // Additional logic for checking resources...
+    return true;
+}
+    public bool TryBuildSettlement(Location location)
+{
+    if (!IsLocationValid(location) || !HasEnoughResourcesForSettlement()) {
         return false;
     }
     // Deduct resources for the settlement
     DeductResourcesForSettlement();
     // Logic to build the settlement
+    BuildSettlement(new Settlement(location, this)); // Pass 'this' as the player
     return true;
 }
     public bool IsLocationValid(Location location)
