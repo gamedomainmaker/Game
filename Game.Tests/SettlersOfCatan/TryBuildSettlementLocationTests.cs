@@ -26,7 +26,6 @@ public class TryBuildSettlementLocationTests
  player2 = new Player("DefaultPlayer2");
 }
     [Fact]
-[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]
 public void CannotBuildSettlementOnInvalidLocation()
 {
     // Arrange
@@ -40,8 +39,7 @@ public void CannotBuildSettlementOnInvalidLocation()
     // Assert
     Assert.False(result, "Player was able to build a settlement on an invalid location.");
 }
-    [Fact]
-[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
+    [Fact]public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
     {
         // Arrange
         player1 = new Player("blah") { Resources = new Resources(1, 1, 1, 1, 0) };
@@ -59,8 +57,7 @@ public void CannotBuildSettlementOnInvalidLocation()
         Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
     }
 
-    [Fact]
-[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CanBuildSettlementOnLocation()
+    [Fact]    public void CanBuildSettlementOnLocation()
     {
         // Arrange
         player1 = new Player("blah") { Resources = new Resources(1, 1, 1, 1, 0) };

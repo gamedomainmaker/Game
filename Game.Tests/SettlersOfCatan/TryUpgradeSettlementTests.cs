@@ -149,7 +149,7 @@ public void Correctly_Fails_Upgrade_Settlement_With_Insufficient_Resources() {
     Assert.False(result);
 }
     [Fact]
-[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void CheckResourcesForUpgrade() {
+public void CheckResourcesForUpgrade() {
     // Arrange
     var player = new Player("blah");
     player.Resources = new Resources(1, 0, 2, 0, 1); // Setting resources for testing
