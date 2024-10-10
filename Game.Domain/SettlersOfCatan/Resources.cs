@@ -14,7 +14,7 @@ public class Resources
         Sheep = sheep;
         Stone = stone;
     }
-    public bool HasSufficientResources(int wheatRequired, int stoneRequired) {
-    return Wheat >= wheatRequired && Stone >= stoneRequired;
+    public bool HasSufficientResources(int wheatRequired, int stoneRequired, int woodRequired = 0, int brickRequired = 0, int sheepRequired = 0) {
+    return Wheat >= wheatRequired && Stone >= stoneRequired && Wood >= woodRequired && Brick >= brickRequired && Sheep >= sheepRequired;
 }
 }

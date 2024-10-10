@@ -162,4 +162,18 @@ public class TryUpgradeSettlementTests
                                                          // Assert
         Assert.IsType<Resources>(player.Resources);
     }
+
+    [Fact]
+    public void Correctly_Fails_Upgrade_Settlement_With_Insufficient_Resources()
+{
+    // Arrange
+    player.Resources = new Resources(0, 0, 0, 0, 0);  // Not enough resources for upgrade
+    var location = new Location(0, 0);
+    var settlement = new Settlement(location, player);
+    player.TryBuildSettlement(location); // Ensure the settlement is built
+    // Act
+    var result = player.CanUpgradeSettlement(settlement);
+    // Assert
+    Assert.False(result);
+}
 }
