@@ -17,4 +17,5 @@ public class Resources
     public bool HasSufficientResources(int wheatRequired, int stoneRequired, int woodRequired = 0, int brickRequired = 0, int sheepRequired = 0) {
     return Wheat >= wheatRequired && Stone >= stoneRequired && Wood >= woodRequired && Brick >= brickRequired && Sheep >= sheepRequired;
 }
+    public Player Owner { get; set; }
 }

@@ -25,15 +25,19 @@ public class Board
                location.X >= 0 && location.Y >= 0;
     }
     public bool TryBuildSettlement(Player player, Location location) {
-        // Ensure the player has enough resources before building
-        if (!player.TryBuildSettlement(location)) {
-            return false; // Player cannot build settlement
-        }
-        // Logic for building the settlement
-        var settlement = new Settlement(location, player); // Pass player as owner
-        Settlements.Add(settlement);
-        return true;
+    // Ensuring the location is valid before proceeding
+    if (!IsValidLocation(location) || IsOccupied(location)) {
+        return false; // Invalid or occupied location
     }
+    // Ensure the player has enough resources before building
+    if (!player.TryBuildSettlement(location)) {
+        return false; // Player cannot build settlement
+    }
+    // Logic for building the settlement
+    var settlement = new Settlement(location, player); // Pass player as owner
+    Settlements.Add(settlement);
+    return true;
+}
 
     public bool IsOccupied(Location location)
     {

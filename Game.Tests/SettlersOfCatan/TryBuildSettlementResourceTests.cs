@@ -76,7 +76,7 @@ public void CannotBuildSettlementWithoutNecessaryResources() {
     }
 
     [Fact]
-    public void CanBuildTwoSettlementWithSufficientResources()
+[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CanBuildTwoSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player
@@ -95,4 +95,16 @@ public void CannotBuildSettlementWithoutNecessaryResources() {
         // Assert
         Assert.True(result, "Player was unable to build a settlement with sufficient resources.");
     }
+    [Fact]
+public void CannotBuildSettlementOnOccupiedLocation() {
+    // Arrange
+    var player = new Player();
+    player.Resources = new Resources(1, 0, 0, 0, 1);
+    var board = new Board(_logger);
+    var location = new Location(1, 1);
+    board.TryBuildSettlement(player, location); // Build first settlement
+    var result = board.TryBuildSettlement(player, location); // Attempting to build on the same location
+    // Assert
+    Assert.False(result, "Player was able to build a settlement on an occupied location.");
+}
 }
