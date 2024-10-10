@@ -41,6 +41,5 @@ public class Player
     // Logic to determine if location is occupied
     return Settlements.Any(settlement => settlement.Location.Equals(location));
 }
-    public Resources Owner { get { return Resources; } }
     // Implement other members
 }

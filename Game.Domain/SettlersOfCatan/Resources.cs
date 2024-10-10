@@ -18,5 +18,4 @@ public class Resources
     // Improved resource validation to check for stone and wheat requirements
     return Wood >= woodRequired && Brick >= brickRequired && Wheat >= wheatRequired && Sheep >= sheepRequired && Stone >= stoneRequired;
 }
-    public Player Owner { get; set; }
 }
