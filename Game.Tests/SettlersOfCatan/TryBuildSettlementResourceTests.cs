@@ -40,21 +40,19 @@ public void CannotBuildSettlementWithoutNecessaryResources() {
     // Assert
     Assert.False(result);
 }
-
     [Fact]
-[Trait("HasTicket", "Id-3c2e4c22-12d4-431d-bc4a-30898fb6aadd")]    public void CanBuildSettlementWithSufficientResources()
-    {
-        // Arrange
-        player = new Player();
-        player.Resources = new Resources(1, 1, 1, 0, 0); // Adequate resources
-        var location = new Location(1, 1); // Fixing the location object
+[Trait("HasTicket", "Id-3c2e4c22-12d4-431d-bc4a-30898fb6aadd")]public void CanBuildSettlementWithSufficientResources() {
+    // Arrange
+    player = new Player();
+    player.Resources = new Resources(1, 0, 0, 0, 1); // Set sufficient resources
+    var location = new Location(1, 1); // Valid location
 
-        // Act
-        var canBuild = player.TryBuildSettlement(location);
+    // Act
+    var canBuild = player.TryBuildSettlement(location);
 
-        // Assert
-        Assert.True(canBuild);
-    }
+    // Assert
+    Assert.True(canBuild);
+}
 
     [Fact]
 [Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]public void CannotBuildTwoSettlementWithoutNecessaryResources()

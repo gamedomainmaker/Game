@@ -13,16 +13,16 @@ public class Player
     return Settlements.Any(settlement => settlement.Location.Equals(location));
 }
     public bool TryBuildSettlement(Location location) {
-    // Check if the location is valid and not occupied
-    if (!Resources.HasSufficientResources(1, 0, 0, 0, 1)) {
-        return false; // Not enough resources
+        // Check if the location is valid and not occupied
+        if (!Resources.HasSufficientResources(1, 0, 0, 0, 1)) {
+            return false; // Not enough resources
+        }
+        if (!IsLocationValid(location) || IsLocationOccupied(location)) {
+            return false; // Invalid or occupied location
+        }
+        // Additional logic for building a settlement
+        return true; // Successful settlement build
     }
-    if (!Resources.Owner.IsLocationValid(location) || Resources.Owner.IsLocationOccupied(location)) {
-        return false; // Invalid or occupied location
-    }
-    // Additional logic for building a settlement
-    return true; // Successful settlement build
-}
     public bool CanUpgradeSettlement(Settlement settlement) {
     // Logic to check if the player can upgrade the given settlement
     if (settlement.Owner != this) return false; // Only the owner can upgrade
