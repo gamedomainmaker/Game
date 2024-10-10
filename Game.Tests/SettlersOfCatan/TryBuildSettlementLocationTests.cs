@@ -72,4 +72,16 @@ public void CannotBuildSettlementOnInvalidLocation()
     }
     private Player player1;
     private Player player2;
+    [Fact] public void CannotBuildOnInsufficientResources() {
+    // Arrange
+    var player = new Player("Player1") { Resources = new Resources(0, 0, 0, 0, 0) };
+    var board = new Board(_logger);
+    var location = new Location(1, 1);
+
+    // Act
+    var result = board.TryBuildSettlement(player, location);
+
+    // Assert
+    Assert.False(result, "Player was able to build a settlement with insufficient resources.");
+}
 }

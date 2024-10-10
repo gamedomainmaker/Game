@@ -42,5 +42,8 @@ public class Player
     return Settlements.Any(settlement => settlement.Location.Equals(location));
 }
     public Player(string name) { Name = name; }
+    public bool HasSufficientResourcesForSettlement() {
+    return Resources.HasSufficientResources(1, 0, 0, 0, 1); // Example resource requirements for a settlement
+}
     // Implement other members
 }

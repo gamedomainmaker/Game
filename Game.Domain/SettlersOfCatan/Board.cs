@@ -75,8 +75,7 @@ public class Board
         // Return true if upgrade was successful
         return true;
     }
-    public bool IsLocationValid(Location location)
-    {
-        return IsValidLocation(location) && !IsOccupied(location);
-    }
+    public bool IsLocationValid(Location location) {
+    return location != null && location.X >= 0 && location.Y >= 0 && !IsOccupied(location);
+}
 }
