@@ -174,4 +174,16 @@ public void Correctly_Fails_Upgrade_Settlement_With_Insufficient_Resources() {
     // Assert
     Assert.False(result);
 }
+    [Fact]
+[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void CheckResourcesForUpgrade() {
+    // Arrange
+    var player = new Player();
+    player.Resources = new Resources(1, 0, 2, 0, 1); // Setting resources for testing
+    var location = new Location(0, 0);
+    var settlement = new Settlement(location, player);
+    // Act
+    var result = settlement.TryUpgradeSettlement(player);
+    // Assert
+    Assert.True(result);
+}
 }
