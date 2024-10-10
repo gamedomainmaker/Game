@@ -40,8 +40,8 @@ public void CannotBuildSettlementWithoutNecessaryResources() {
     // Assert
     Assert.False(result);
 }
-    [Fact]
-[Trait("HasTicket", "Id-3c2e4c22-12d4-431d-bc4a-30898fb6aadd")]public void CanBuildSettlementWithSufficientResources() {
+    [Fact] 
+public void CanBuildSettlementWithSufficientResources() {
     // Arrange
     player = new Player();
     player.Resources = new Resources(1, 0, 0, 0, 1); // Set sufficient resources
@@ -51,7 +51,8 @@ public void CannotBuildSettlementWithoutNecessaryResources() {
     var canBuild = player.TryBuildSettlement(location);
 
     // Assert
-    Assert.True(canBuild);
+    Assert.True(canBuild); 
+    Log.Information($"CanBuild: {canBuild} with resources {player.Resources.Wood}, {player.Resources.Brick}, {player.Resources.Wheat}, {player.Resources.Sheep}, {player.Resources.Stone}");
 }
 
     [Fact]

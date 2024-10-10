@@ -14,8 +14,8 @@ public class Resources
         Sheep = sheep;
         Stone = stone;
     }
-    public bool HasSufficientResources(int wheatRequired, int stoneRequired, int woodRequired = 0, int brickRequired = 0, int sheepRequired = 0) {
-        return Wheat >= wheatRequired && Stone >= stoneRequired && Wood >= woodRequired && Brick >= brickRequired && Sheep >= sheepRequired;
-    }
+    public bool HasSufficientResources(int woodRequired, int brickRequired, int wheatRequired = 0, int sheepRequired = 0, int stoneRequired = 0) {
+   return Wood >= woodRequired && Brick >= brickRequired && Wheat >= wheatRequired && Sheep >= sheepRequired && Stone >= stoneRequired;
+}
     public Player Owner { get; set; }
 }
