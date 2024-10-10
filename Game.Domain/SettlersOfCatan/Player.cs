@@ -29,7 +29,7 @@ public class Player
     return CanUpgradeSettlementResources(); // Check resources and conditions
 }
     public bool CanUpgradeSettlementResources() {
-    // Checking cumulative resources required for upgrading
+    // Ensure this checks correctly for all upgrade resources
     if (Resources.Wheat < 2 || Resources.Stone < 1) {
         return false;
     }
