@@ -104,7 +104,7 @@ public class TryUpgradeSettlementTests
         Assert.False(result);
     }
     [Fact]
-[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void CanBuildSettlementWithSufficientResources()
+[Trait("HasTicket", "Id-8b8454e6-a92b-4866-b3bc-07fd6938dbd1")]public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         var player = new Player();
@@ -128,7 +128,7 @@ public class TryUpgradeSettlementTests
         Assert.False(result);
     }
     [Fact]
-[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void CannotUpgradeSettlementWithInsufficientResources()
+[Trait("HasTicket", "Id-8b8454e6-a92b-4866-b3bc-07fd6938dbd1")]public void CannotUpgradeSettlementWithInsufficientResources()
     {
         // Arrange
         var player = new Player();

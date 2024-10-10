@@ -14,6 +14,8 @@ public class Resources
         Sheep = sheep;
         Stone = stone;
     }
+
+    // TODO: why have some defaults and not others? They should all be required inputs.
     public bool HasSufficientResources(int woodRequired, int brickRequired, int wheatRequired = 0, int sheepRequired = 0, int stoneRequired = 0) {
    return Wood >= woodRequired && Brick >= brickRequired && Wheat >= wheatRequired && Sheep >= sheepRequired && Stone >= stoneRequired;
 }
