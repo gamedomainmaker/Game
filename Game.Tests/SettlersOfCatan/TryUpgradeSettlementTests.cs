@@ -116,7 +116,7 @@ public class TryUpgradeSettlementTests
         Assert.False(result);
     }
     [Fact]
-[Trait("HasTicket", "Id-8b8454e6-a92b-4866-b3bc-07fd6938dbd1")]public void CannotUpgradeSettlementWithInsufficientResources()
+[Trait("HasTicket", "Id-87c73faa-e2af-4257-907a-fc51df32b4b1")]public void CannotUpgradeSettlementWithInsufficientResources()
     {
         // Arrange
         var player = new Player();
