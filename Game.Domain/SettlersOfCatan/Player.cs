@@ -4,7 +4,7 @@ using Game.Domain;
 
 public class Player
 {
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; set; }
     public Resources Resources { get; set; } = new Resources(0, 0, 0, 0, 0);
     public List<Settlement> Settlements { get; set; } = new List<Settlement>();
     public bool HasSettlementAt(Location location) {
@@ -41,5 +41,6 @@ public class Player
     // Logic to determine if location is occupied
     return Settlements.Any(settlement => settlement.Location.Equals(location));
 }
+    public Player(string name) { Name = name; }
     // Implement other members
 }

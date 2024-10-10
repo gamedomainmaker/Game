@@ -8,11 +8,10 @@ namespace Game.Tests.SettlersOfCatan;
 
 public class TryUpgradeSettlementTests
 {
-    private Player player { get; set; } = new Player();
+    private Player player = new Player("Test Player");
     private List<Settlement> settlements { get; set; } = new List<Settlement>();
     private readonly ILogger<Board> _logger;
-
-    public TryUpgradeSettlementTests(ITestOutputHelper output)
+    public TryUpgradeSettlementTests(ITestOutputHelper output) 
     {
         // Configure Serilog to log to both console and file
         Log.Logger = new LoggerConfiguration()
@@ -30,10 +29,11 @@ public class TryUpgradeSettlementTests
         _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
         Setup();
         player.Resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
+        player = new Player("Test Player"); // Initialize player with name
     }
     private void Setup()
     {
-        player = new Player();
+        player = new Player("blah");
         player.Resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
         settlements = new List<Settlement>();
         // Initialize a settlement for testing
@@ -83,7 +83,7 @@ public class TryUpgradeSettlementTests
     public void CannotBuildSettlementWithoutNecessaryResources()
     {
         // Arrange
-        var player = new Player();
+        var player = new Player("blah");
         var location = new Location(1, 1);
         player.Resources = new Resources(0, 0, 0, 0, 0); // No resources
                                                          // Act
@@ -95,7 +95,7 @@ public class TryUpgradeSettlementTests
     public void CannotBuildSettlementAtOccupiedLocation()
     {
         // Arrange
-        var player = new Player();
+        var player = new Player("blah");
         var location = new Location(0, 0);
         player.TryBuildSettlement(location); // First build
                                              // Act
@@ -107,7 +107,7 @@ public class TryUpgradeSettlementTests
     public void CannotBuildSettlementWithInsufficientResources()
     {
         // Arrange
-        var player = new Player();
+        var player = new Player("blah");
         player.Resources = new Resources(0, 0, 0, 0, 0); // Not enough resources
         var location = new Location(1, 1);
         // Act
@@ -116,23 +116,10 @@ public class TryUpgradeSettlementTests
         Assert.False(result);
     }
     [Fact]
-[Trait("HasTicket", "Id-87c73faa-e2af-4257-907a-fc51df32b4b1")]public void CannotUpgradeSettlementWithInsufficientResources()
-    {
-        // Arrange
-        var player = new Player();
-        player.Resources = new Resources(0, 0, 0, 0, 0); // No resources
-        var location = new Location(1, 1);
-        var settlement = new Settlement(location, player);
-        // Act
-        var result = settlement.UpgradeToCity(player);
-        // Assert
-        Assert.False(result);
-    }
-    [Fact]
     public void CannotBuildSettlementWithResourcesAsInt()
     {
         // Arrange
-        var player = new Player();
+        var player = new Player("blah");
         var location = new Location(1, 1);
         player.Resources = new Resources(0, 0, 0, 0, 0); // No resources
                                                          // Act
@@ -144,7 +131,7 @@ public class TryUpgradeSettlementTests
     public void CannotSetResourcesAsResourcesObject()
     {
         // Arrange
-        var player = new Player();
+        var player = new Player("blah");
         // Act
         player.Resources = new Resources(0, 0, 0, 0, 0); // Proper resource initialization
                                                          // Assert
@@ -164,7 +151,7 @@ public void Correctly_Fails_Upgrade_Settlement_With_Insufficient_Resources() {
     [Fact]
 [Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void CheckResourcesForUpgrade() {
     // Arrange
-    var player = new Player();
+    var player = new Player("blah");
     player.Resources = new Resources(1, 0, 2, 0, 1); // Setting resources for testing
     var location = new Location(0, 0);
     var settlement = new Settlement(location, player);

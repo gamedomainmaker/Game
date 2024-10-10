@@ -22,8 +22,10 @@ public class Settlement
     public bool TryUpgradeSettlement(Player player) {
     // Logic to incorporate correct resource checks
     if (!player.CanUpgradeSettlementResources()) return false;
-    // Existing logic to upgrade settlement to city
-    return true; // Indicate upgrade success
+
+    // Attempt upgrade and further logic
+    if (UpgradeToCity(player)) return true; // Call to upgrade method
+    return false; // Indicate upgrade failure
 }
     private bool CanUpgradeSettlementResources() {
     return Owner.Resources.HasSufficientResources(1, 0, 2, 0, 1);

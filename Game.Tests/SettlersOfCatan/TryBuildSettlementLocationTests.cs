@@ -9,34 +9,28 @@ namespace Game.Tests;
 public class TryBuildSettlementLocationTests
 {
     private Player? player;
-    private Player? player1;
-    private Player? player2;
-
-    private readonly ILogger<Board> _logger;
-
-    public TryBuildSettlementLocationTests(ITestOutputHelper output)
-    {
-        // Configure Serilog to log to both console and file
-        Log.Logger = new LoggerConfiguration()
-            .WriteTo.Sink(new XunitSink(output)) // Use custom sink
-            .CreateLogger();
-
-        // Configure logging for the test
-        var serviceCollection = new ServiceCollection()
-            .AddLogging(builder =>
-            {
-                builder.AddSerilog();
-            });
-        var serviceProvider = serviceCollection.BuildServiceProvider();
-
-        _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
-    }
+    private ILogger<Board> _logger;
+    public TryBuildSettlementLocationTests(ITestOutputHelper output) {
+ // Configuration and logger initialization
+ Log.Logger = new LoggerConfiguration()
+ .WriteTo.Sink(new XunitSink(output)) // Use custom sink
+ .CreateLogger();
+ var serviceCollection = new ServiceCollection()
+ .AddLogging(builder =>
+ {
+ builder.AddSerilog();
+ });
+ var serviceProvider = serviceCollection.BuildServiceProvider();
+ _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
+ player1 = new Player("DefaultPlayer1");
+ player2 = new Player("DefaultPlayer2");
+}
     [Fact]
+[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]
 public void CannotBuildSettlementOnInvalidLocation()
 {
     // Arrange
-    player = new Player { Name = "Player1", Resources = new Resources(1, 1, 1, 1, 0) };
-
+    player = new Player("Player1") { Resources = new Resources(1, 1, 1, 1, 0) };
     var board = new Board(_logger);
     var invalidLocation = new Location(-1, -1);
 
@@ -50,8 +44,8 @@ public void CannotBuildSettlementOnInvalidLocation()
 [Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]public void CannotBuildOnOccupiedLocation_withOccupiedLocationTest()
     {
         // Arrange
-        player1 = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
-        player2 = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
+        player1 = new Player("blah") { Resources = new Resources(1, 1, 1, 1, 0) };
+        player2 = new Player("blah") { Resources = new Resources(1, 1, 1, 1, 0) };
         var board = new Board(_logger);
         var location = new Location(3, 3);
 
@@ -69,7 +63,7 @@ public void CannotBuildSettlementOnInvalidLocation()
 [Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CanBuildSettlementOnLocation()
     {
         // Arrange
-        player1 = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
+        player1 = new Player("blah") { Resources = new Resources(1, 1, 1, 1, 0) };
         var board = new Board(_logger);
         var location = new Location(3, 3);
 
@@ -79,4 +73,6 @@ public void CannotBuildSettlementOnInvalidLocation()
         // Assert
         Assert.True(result, "Player 1 was not able to build a settlement.");
     }
+    private Player player1;
+    private Player player2;
 }
