@@ -160,4 +160,15 @@ public void Correctly_Fails_Upgrade_Settlement_With_Insufficient_Resources() {
     // Assert
     Assert.True(result);
 }
+    [Fact]
+public void CannotUpgradeSettlementWithInsufficientResources() {
+    // Arrange
+    player.Resources = new Resources(0, 0, 0, 0, 0); // Not enough resources
+    var location = new Location(2, 2);
+    var settlement = new Settlement(location, player);
+    // Act
+    var result = settlement.TryUpgradeSettlement(player);
+    // Assert
+    Assert.False(result);
+}
 }
