@@ -52,7 +52,9 @@ public class TryUpgradeSettlementTests
         Assert.True(player.TryBuildSettlement(location)); // Assert improved
         Assert.Contains(settlement, player.Settlements);
     }
-    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
+
+    [Fact]
+[Trait("HasTicket", "Id-de2e0a37-0080-45ac-a140-875e34037fcd")]    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
     // Arrange
     player.Resources.Wood = 2;
     player.Resources.Brick = 1;
