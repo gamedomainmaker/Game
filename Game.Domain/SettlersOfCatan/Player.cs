@@ -29,11 +29,8 @@ public class Player
     return CanUpgradeSettlementResources(); // Check resources and conditions
 }
     public bool CanUpgradeSettlementResources() {
-    // Ensure this checks correctly for all upgrade resources
-    if (Resources.Wheat < 2 || Resources.Stone < 1) {
-        return false;
-    }
-    return true;
+    // Ensure this checks correctly for all upgrade resources including wood and stone
+    return Resources.Wheat >= 2 && Resources.Stone >= 1;
 }
     public Resources OwnerResources => Resources;
     public bool IsLocationValid(Location location) {

@@ -15,8 +15,8 @@ public class Resources
         Stone = stone;
     }
     public bool HasSufficientResources(int woodRequired, int brickRequired, int wheatRequired = 0, int sheepRequired = 0, int stoneRequired = 0) {
-   // Changing the checks to ensure all resources are validated correctly
-   return Wood >= woodRequired && Brick >= brickRequired && Wheat >= wheatRequired && Sheep >= sheepRequired && Stone >= stoneRequired;
+    // Improved resource validation to check for stone and wheat requirements
+    return Wood >= woodRequired && Brick >= brickRequired && Wheat >= wheatRequired && Sheep >= sheepRequired && Stone >= stoneRequired;
 }
     public Player Owner { get; set; }
 }

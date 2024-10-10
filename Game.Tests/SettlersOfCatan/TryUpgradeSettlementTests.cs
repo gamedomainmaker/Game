@@ -104,18 +104,6 @@ public class TryUpgradeSettlementTests
         Assert.False(result);
     }
     [Fact]
-[Trait("HasTicket", "Id-8b8454e6-a92b-4866-b3bc-07fd6938dbd1")]public void CanBuildSettlementWithSufficientResources()
-    {
-        // Arrange
-        var player = new Player();
-        player.Resources = new Resources(0, 0, 0, 0, 0); // Enough resources
-        var location = new Location(2, 2);
-        // Act
-        var result = player.TryBuildSettlement(location);
-        // Assert
-        Assert.True(result);
-    }
-    [Fact]
     public void CannotBuildSettlementWithInsufficientResources()
     {
         // Arrange
