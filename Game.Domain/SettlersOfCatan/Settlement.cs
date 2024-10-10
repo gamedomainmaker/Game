@@ -20,9 +20,9 @@ public class Settlement
 }
     public Player Owner { get; private set; }
     public bool TryUpgradeSettlement(Player player) {
-    if (!CanUpgradeSettlementResources()) return false; // Ensure resource validation
+    if (!CanUpgradeSettlementResources()) return false;
     // Logic to upgrade settlement to city
-    return true; // Indicate success
+    return true; // Indicate upgrade success
 }
     private bool CanUpgradeSettlementResources() {
     return Owner.Resources.HasSufficientResources(1, 2); // Ensure correct validation based on player resources.
