@@ -25,6 +25,6 @@ public class Settlement
     return true; // Indicate upgrade success
 }
     private bool CanUpgradeSettlementResources() {
-    return Owner.Resources.HasSufficientResources(1, 2); // Ensure correct validation based on player resources.
+    return Owner.Resources.HasSufficientResources(1, 2);
 }
 }
