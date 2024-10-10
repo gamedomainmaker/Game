@@ -14,7 +14,7 @@ public class Player
 }
     public bool TryBuildSettlement(Location location) {
     // Logic to check if the player has enough resources to build a settlement
-    if (Resources.Wheat < 1 || Resources.Stone < 1) {
+    if (!Resources.HasSufficientResources(1, 0, 0, 0, 1)) {
         return false; // Not enough resources
     }
     // Additional logic for building a settlement

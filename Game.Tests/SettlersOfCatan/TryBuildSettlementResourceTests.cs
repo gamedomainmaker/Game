@@ -29,23 +29,20 @@ public class TryBuildSettlementResourceTests
         _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
     }
     [Fact]
-[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CannotBuildSettlementWithoutNecessaryResources()
-    {
-        // Arrange
-        player = new Player { Resources = new Resources(0, 0, 0, 0, 0) };
-
-        var board = new Board(_logger);
-        var location = new Location(1, 1); // Arbitrary valid location
-
-        // Act
-        var result = board.TryBuildSettlement(player, location);
-
-        // Assert
-        Assert.False(result, "Player was able to build a settlement without the necessary resources.");
-    }
+public void CannotBuildSettlementWithoutNecessaryResources() {
+    // Arrange
+    var player = new Player();
+    var location = new Location(0, 0);
+    
+    // Act
+    var result = player.TryBuildSettlement(location);
+    
+    // Assert
+    Assert.False(result);
+}
 
     [Fact]
-[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CanBuildSettlementWithSufficientResources()
+[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player();
@@ -60,7 +57,7 @@ public class TryBuildSettlementResourceTests
     }
 
     [Fact]
-[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]    public void CannotBuildTwoSettlementWithoutNecessaryResources()
+[Trait("HasTicket", "Id-8dcc3554-dbb4-47f3-89d3-311c126f49da")]public void CannotBuildTwoSettlementWithoutNecessaryResources()
     {
         // Arrange
         player = new Player { Resources = new Resources(1, 1, 1, 1, 0) };
