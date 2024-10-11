@@ -14,14 +14,14 @@ public class Player
     public bool TryBuildSettlement(Location location) {
     if (!Resources.HasSufficientResources(1, 0, 0, 0, 1)) {
         return false; // Not enough resources
-    }  
+    }
     if (!IsLocationValid(location) || IsLocationOccupied(location)) {
         return false; // Invalid or occupied location
     }
     // Deduct resources used for building
     Resources.Wood -= 1; 
     Resources.Stone -= 1;
-    // Additional logic for building a settlement
+    Resources.Wheat -= 1; // Ensure all resources are deducted properly
     Settlements.Add(new Settlement(location, this)); // Add the new settlement
     return true; // Successful settlement build
 }

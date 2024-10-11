@@ -172,4 +172,17 @@ public class TryBuildSettlementTests
     private void InitializePlayerResources(Player player, int wood, int brick, int wheat, int sheep, int stone) {
     player.Resources = new Resources(wood, brick, wheat, sheep, stone);
 }
+    [Fact]
+[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildSettlementWithCorrectResourceSetup() {
+    // Arrange
+    var player = new Player("TestPlayer");
+    InitializePlayerResources(player, 1, 0, 0, 0, 1);
+    var board = new Board(_logger);
+    var location = new Location(1, 1);
+    // Act
+    var result = board.TryBuildSettlement(player, location);
+    // Assert
+    Assert.True(result, "Player should be able to build a settlement with sufficient resources.");
+    Assert.True(player.Resources.HasSufficientResources(0, 0, 0, 0, 0), "Player resources should be updated correctly after building");
+}
 }
