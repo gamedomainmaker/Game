@@ -170,6 +170,6 @@ public class TryBuildSettlementTests
         Assert.False(result, "Player was able to build a settlement on an occupied location.");
     }
     private void InitializePlayerResources(Player player, int wood, int brick, int wheat, int sheep, int stone) {
-        player.Resources = new Resources(wood, brick, wheat, sheep, stone);
-    }
+    player.Resources = new Resources(wood, brick, wheat, sheep, stone);
+}
 }

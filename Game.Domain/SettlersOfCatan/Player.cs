@@ -12,19 +12,19 @@ public class Player
         return Settlements.Any(settlement => settlement.Location.Equals(location));
     }
     public bool TryBuildSettlement(Location location) {
-        if (!Resources.HasSufficientResources(1, 0, 0, 0, 1)) {
-            return false; // Not enough resources
-        }  
-        if (!IsLocationValid(location) || IsLocationOccupied(location)) {
-            return false; // Invalid or occupied location
-        }
-        // Deduct resources used for building
-        Resources.Wood -= 1; 
-        Resources.Stone -= 1;
-        // Additional logic for building a settlement
-        Settlements.Add(new Settlement(location, this)); // Add the new settlement
-        return true; // Successful settlement build
+    if (!Resources.HasSufficientResources(1, 0, 0, 0, 1)) {
+        return false; // Not enough resources
+    }  
+    if (!IsLocationValid(location) || IsLocationOccupied(location)) {
+        return false; // Invalid or occupied location
     }
+    // Deduct resources used for building
+    Resources.Wood -= 1; 
+    Resources.Stone -= 1;
+    // Additional logic for building a settlement
+    Settlements.Add(new Settlement(location, this)); // Add the new settlement
+    return true; // Successful settlement build
+}
     public bool CanUpgradeSettlement(Settlement settlement)
     {
         // Logic to check if the player can upgrade the given settlement
