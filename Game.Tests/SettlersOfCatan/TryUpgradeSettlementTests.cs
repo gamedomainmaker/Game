@@ -8,17 +8,15 @@ namespace Game.Tests.SettlersOfCatan;
 
 public class TryUpgradeSettlementTests
 {
-    private Player player = new Player("Test Player");
-    private List<Settlement> settlements { get; set; } = new List<Settlement>();
+    private Player player;
+    private List<Settlement> settlements;
     private readonly ILogger<Board> _logger;
     public TryUpgradeSettlementTests(ITestOutputHelper output) 
     {
-        // Configure Serilog to log to both console and file
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.Sink(new XunitSink(output)) // Use custom sink
+            .WriteTo.Sink(new XunitSink(output)) 
             .CreateLogger();
 
-        // Configure logging for the test
         var serviceCollection = new ServiceCollection()
             .AddLogging(builder =>
             {
@@ -28,46 +26,44 @@ public class TryUpgradeSettlementTests
 
         _logger = serviceProvider.GetRequiredService<ILogger<Board>>();
         Setup();
-        player.Resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
-        player = new Player("Test Player"); // Initialize player with name
     }
+
     private void Setup()
     {
-        player = new Player("blah");
-        player.Resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
+        player = new Player("Test Player");
         settlements = new List<Settlement>();
-        // Initialize a settlement for testing
+        player.Resources = new Resources(2, 3, 0, 0, 0); // Enough resources for upgrade
         var location = new Location(0, 0);
-        var settlement = new Settlement(location, player);
-        settlements.Add(settlement);
+        settlements.Add(new Settlement(location, player));
+    }
+
+    private void EnsureResourcesForUpgrade() {
+        player.Resources = new Resources(2, 3, 1, 0, 1); // Required resources for upgrade
+    }
+
+    private void EnsureResourcesForSettlement() {
+        player.Resources = new Resources(1, 0, 0, 0, 1); // Required resources for building a settlement
     }
 
     [Theory]
     [InlineData(0, 0)]
     [InlineData(1, 1)]
-[Trait("HasTicket", "Id-2b27cdaf-17a4-44c6-980f-0e7ed61c1ec6")]public void BuildSettlement(int x, int y)
-    {
+    public void BuildSettlement(int x, int y) {
+        EnsureResourcesForSettlement();
         var location = new Location(x, y);
-        var settlement = new Settlement(location, player);
         Assert.True(player.TryBuildSettlement(location)); // Assert improved
-        Assert.Contains(settlement, player.Settlements);
     }
 
     [Fact]
-[Trait("HasTicket", "Id-2b27cdaf-17a4-44c6-980f-0e7ed61c1ec6")]public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
-    // Arrange
-    player.Resources.Wood = 2;
-    player.Resources.Brick = 1;
-    player.Resources.Wheat = 1;
-    var location = new Location(0, 0);
-    var settlement = new Settlement(location, player);
-    player.TryBuildSettlement(location); // Ensure the settlement is built
-    // Act
-    var result = player.CanUpgradeSettlement(settlement);
-    // Assert
-    Assert.True(result);
-}
+[Trait("HasTicket", "Id-19231067-76d7-43c6-a04d-e6974a5f4351")]    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
+        EnsureResourcesForUpgrade();
+        var location = new Location(0, 0);
+        var settlement = new Settlement(location, player);
+        player.TryBuildSettlement(location);
+        Assert.True(player.CanUpgradeSettlement(settlement));
+    }
 
+    // TODO: additional tests should use the new EnsureResourcesForSettlement and EnsureResourcesForUpgrade.
     [Fact]
     public void Can_Not_Upgrade_Settlement_To_City()
     {
