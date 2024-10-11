@@ -45,7 +45,7 @@ public class TryUpgradeSettlementTests
     [Theory]
     [InlineData(0, 0)]
     [InlineData(1, 1)]
-[Trait("HasTicket", "Id-52fe213c-e224-473f-b2c1-01bdff653b90")]public void BuildSettlement(int x, int y)
+[Trait("HasTicket", "Id-e972c9e3-a0e9-421a-855e-0fa8894ba7cf")]    public void BuildSettlement(int x, int y)
     {
         var location = new Location(x, y);
         var settlement = new Settlement(location, player);
@@ -54,7 +54,7 @@ public class TryUpgradeSettlementTests
     }
 
     [Fact]
-[Trait("HasTicket", "Id-de2e0a37-0080-45ac-a140-875e34037fcd")]    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
+[Trait("HasTicket", "Id-e972c9e3-a0e9-421a-855e-0fa8894ba7cf")]    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
     // Arrange
     player.Resources.Wood = 2;
     player.Resources.Brick = 1;
