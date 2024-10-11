@@ -59,21 +59,19 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
     }
-        [Fact]
-[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]    public void CanBuildSettlementOnLocation()
-    {
-        // Arrange
-        player1 = new Player("Player1") { Resources = new Resources(1, 0, 0, 0, 1) }; // Set to valid resources
-        var board = new Board(_logger);
-        var location = new Location(3, 3);
-        
-        // Act
-        var result = board.TryBuildSettlement(player1, location);
-        
-        // Assert
-        Assert.True(result, "Player 1 was not able to build a settlement.");
-        Assert.True(player1.Resources.HasSufficientResources(1, 0, 0, 0, 1), "Player 1 did not have sufficient resources.");
-    }
+    [Fact]
+[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildSettlementOnLocation()
+{
+    // Arrange
+    InitializePlayerResources(player1, 1, 0, 0, 0, 1);
+    var board = new Board(_logger);
+    var location = new Location(3, 3);
+    // Act
+    var result = board.TryBuildSettlement(player1, location);
+    // Assert
+    Assert.True(result, "Player 1 was not able to build a settlement.");
+    Assert.True(player1.Resources.HasSufficientResources(1, 0, 0, 0, 1), "Player 1 did not have sufficient resources.");
+}
     private Player player1;
     private Player player2;
     [Fact]
@@ -141,7 +139,7 @@ public class TryBuildSettlementTests
         Assert.False(result, "Player was able to build a settlement without the necessary resources.");
     }
         [Fact]
-[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]    public void CanBuildTwoSettlementWithSufficientResources()
+[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildTwoSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player("TestPlayer");
@@ -173,4 +171,5 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player was able to build a settlement on an occupied location.");
     }
+    private void InitializePlayerResources(Player player, int wood, int brick, int wheat, int sheep, int stone) { player.Resources = new Resources(wood, brick, wheat, sheep, stone); }
 }
