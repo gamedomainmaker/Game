@@ -103,19 +103,16 @@ public class TryBuildSettlementTests
         Assert.False(result);
     }
     [Fact]
-    public void CanBuildSettlementWithSufficientResources()
-    {
-        // Arrange
-        player = new Player("TestPlayer");
-        InitializePlayerResources(player, 1, 0, 0, 0, 1); // Ensure correct initial resources
-        var location = new Location(0, 0);
-
-        // Act
-        var canBuild = player.TryBuildSettlement(location);
-
-        // Assert
-        Assert.True(canBuild);
-    }
+public void CanBuildSettlementWithSufficientResources() {
+// Arrange
+    player = new Player("TestPlayer");
+    InitializePlayerResources(player, 1, 0, 0, 0, 1); // Ensure correct initial resources
+    var location = new Location(0, 0);
+    // Act
+    var canBuild = player.TryBuildSettlement(location);
+    // Assert
+    Assert.True(canBuild);
+}
 
     [Fact]
     public void CannotBuildTwoSettlementWithoutNecessaryResources()
