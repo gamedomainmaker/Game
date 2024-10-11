@@ -171,6 +171,7 @@ public class TryBuildSettlementTests
     }
     private void InitializePlayerResources(Player player, int wood, int brick, int wheat, int sheep, int stone) {
     player.Resources = new Resources(wood, brick, wheat, sheep, stone);
+    Assert.True(player.Resources.HasSufficientResources(wood, brick, wheat, sheep, stone), "Player resources should be initialized correctly.");
 }
     [Fact]
 [Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildSettlementWithCorrectResourceSetup() {
@@ -184,5 +185,35 @@ public class TryBuildSettlementTests
     // Assert
     Assert.True(result, "Player should be able to build a settlement with sufficient resources.");
     Assert.True(player.Resources.HasSufficientResources(0, 0, 0, 0, 0), "Player resources should be updated correctly after building");
+}
+    [Fact]
+[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildSettlementWithSufficientResourcesAfterUpdate()
+{
+    // Arrange
+    player = new Player("TestPlayer");
+    InitializePlayerResources(player, 2, 0, 0, 0, 1);
+    var board = new Board(_logger);
+    var location = new Location(0, 0);
+    // Act
+    player.TryBuildSettlement(location);
+    // Assert
+    Assert.True(player.Resources.HasSufficientResources(0, 0, 0, 0, 0), "Player resources should be updated correctly after building");
+}
+    [Fact]
+[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildTwoSettlementWithSufficientResourcesAfterUpdates()
+{
+    // Arrange
+    player = new Player("TestPlayer");
+    InitializePlayerResources(player, 2, 0, 0, 0, 1);
+    var board = new Board(_logger);
+    var location1 = new Location(1, 1);
+    var location2 = new Location(2, 2);
+    // Act
+    var result1 = board.TryBuildSettlement(player, location1);
+    var result2 = board.TryBuildSettlement(player, location2);
+    // Assert
+    Assert.True(result1, "Player was unable to build the first settlement with sufficient resources.");
+    Assert.True(result2, "Player was unable to build the second settlement with sufficient resources.");
+    Assert.True(player.Resources.HasSufficientResources(0, 0, 0, 0, 0), "Player should have sufficient resources after building both settlements.");
 }
 }
