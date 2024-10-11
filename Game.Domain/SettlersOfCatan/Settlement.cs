@@ -22,9 +22,10 @@ public class Settlement
     public Player Owner { get; private set; }
     public bool TryUpgradeSettlement(Player player) {
     if (!player.CanUpgradeSettlementResources()) return false;
+    if (!player.HasSettlementAt(Location)) return false; // Ensure player has a settlement at the location
     return UpgradeToCity(player);
 }
-    private bool CanUpgradeSettlementResources() {
-    return Owner.Resources.HasSufficientResources(1, 0, 2, 0, 1);
+    private bool CanUpgradeSettlementResources(Player player) {
+    return player.Resources.Wheat >= 2 && player.Resources.Stone >= 1;
 }
 }

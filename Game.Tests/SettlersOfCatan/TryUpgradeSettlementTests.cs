@@ -53,15 +53,16 @@ public class TryUpgradeSettlementTests
         var location = new Location(x, y);
         Assert.True(player.TryBuildSettlement(location)); // Assert improved
     }
-
     [Fact]
-[Trait("HasTicket", "Id-19231067-76d7-43c6-a04d-e6974a5f4351")]public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
-        EnsureResourcesForUpgrade();
-        var location = new Location(0, 0);
-        var settlement = new Settlement(location, player);
-        player.TryBuildSettlement(location);
-        Assert.True(player.CanUpgradeSettlement(settlement));
-    }
+    [Trait("HasTicket", "Id-19231067-76d7-43c6-a04d-e6974a5f4351")]
+    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
+    EnsureResourcesForUpgrade();
+    var location = new Location(0, 0);
+    settlement = player.Settlements.FirstOrDefault(s => s.Location.Equals(location)); // Get the existing settlement
+    Assert.NotNull(settlement); // Ensure the settlement exists
+    Assert.True(player.CanUpgradeSettlement(settlement));
+    Assert.True(settlement.TryUpgradeSettlement(player)); // Assert the upgrade now returns true
+}
 
     // TODO: additional tests should use the new EnsureResourcesForSettlement and EnsureResourcesForUpgrade.
     [Fact]
@@ -145,7 +146,7 @@ public void Correctly_Fails_Upgrade_Settlement_With_Insufficient_Resources() {
     Assert.False(result);
 }
     [Fact]
-public void CheckResourcesForUpgrade() {
+[Trait("HasTicket", "Id-73b15890-c36f-4211-bbae-640227da97b0")]public void CheckResourcesForUpgrade() {
     // Arrange
     var player = new Player("blah");
     player.Resources = new Resources(1, 0, 2, 0, 1); // Setting resources for testing
@@ -169,4 +170,5 @@ public void CannotUpgradeSettlementWithInsufficientResources() {
 }
     private void SetupPlayerWithSufficientResources() { player.Resources = new Resources(2, 3, 1, 0, 1); }
     private void SetupSettlementForTesting() { var location = new Location(0, 0); var settlement = new Settlement(location, player); player.Settlements.Add(settlement); }
+    private Settlement settlement;
 }
