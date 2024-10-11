@@ -11,20 +11,17 @@ public class Player
         // This should return true if a settlement exists; otherwise, false
         return Settlements.Any(settlement => settlement.Location.Equals(location));
     }
-        public bool TryBuildSettlement(Location location)
-    {
-        // Check if the location is valid and not occupied
-        if (!Resources.HasSufficientResources(1, 0, 0, 0, 1))
-        {
+    public bool TryBuildSettlement(Location location) {
+        if (!Resources.HasSufficientResources(1, 0, 0, 0, 1)) {
             return false; // Not enough resources
-        } 
-        if (!IsLocationValid(location) || IsLocationOccupied(location))
-        {
+        }  
+        if (!IsLocationValid(location) || IsLocationOccupied(location)) {
             return false; // Invalid or occupied location
         }
-        // Additional logic for building a settlement
-        Resources.Wood -= 1; // Deduct resources used for building
+        // Deduct resources used for building
+        Resources.Wood -= 1; 
         Resources.Stone -= 1;
+        // Additional logic for building a settlement
         Settlements.Add(new Settlement(location, this)); // Add the new settlement
         return true; // Successful settlement build
     }

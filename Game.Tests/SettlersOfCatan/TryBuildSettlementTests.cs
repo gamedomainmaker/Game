@@ -102,21 +102,19 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result);
     }
-
     [Fact]
     public void CanBuildSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player("TestPlayer");
-        player.Resources = new Resources(1, 0, 0, 0, 1); // Set sufficient resources
-        var location = new Location(1, 1); // Valid location
+        InitializePlayerResources(player, 1, 0, 0, 0, 1); // Ensure correct initial resources
+        var location = new Location(0, 0);
 
         // Act
         var canBuild = player.TryBuildSettlement(location);
 
         // Assert
         Assert.True(canBuild);
-        Log.Information($"CanBuild: {canBuild} with resources {player.Resources.Wood}, {player.Resources.Brick}, {player.Resources.Wheat}, {player.Resources.Sheep}, {player.Resources.Stone}");
     }
 
     [Fact]
@@ -171,5 +169,7 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player was able to build a settlement on an occupied location.");
     }
-    private void InitializePlayerResources(Player player, int wood, int brick, int wheat, int sheep, int stone) { player.Resources = new Resources(wood, brick, wheat, sheep, stone); }
+    private void InitializePlayerResources(Player player, int wood, int brick, int wheat, int sheep, int stone) {
+        player.Resources = new Resources(wood, brick, wheat, sheep, stone);
+    }
 }
