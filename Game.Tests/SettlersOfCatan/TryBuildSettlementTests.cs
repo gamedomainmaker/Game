@@ -60,7 +60,7 @@ public class TryBuildSettlementTests
         Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
     }
     [Fact]
-[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildSettlementOnLocation()
+public void CanBuildSettlementOnLocation()
 {
     // Arrange
     InitializePlayerResources(player1, 1, 0, 0, 0, 1);
@@ -134,7 +134,7 @@ public void CanBuildSettlementWithSufficientResources() {
         Assert.False(result, "Player was able to build a settlement without the necessary resources.");
     }
         [Fact]
-[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildTwoSettlementWithSufficientResources()
+public void CanBuildTwoSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player("TestPlayer");
@@ -171,7 +171,7 @@ public void CanBuildSettlementWithSufficientResources() {
     Assert.True(player.Resources.HasSufficientResources(wood, brick, wheat, sheep, stone), "Player resources should be initialized correctly.");
 }
     [Fact]
-[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildSettlementWithCorrectResourceSetup() {
+public void CanBuildSettlementWithCorrectResourceSetup() {
     // Arrange
     var player = new Player("TestPlayer");
     InitializePlayerResources(player, 1, 0, 0, 0, 1);
@@ -184,7 +184,7 @@ public void CanBuildSettlementWithSufficientResources() {
     Assert.True(player.Resources.HasSufficientResources(0, 0, 0, 0, 0), "Player resources should be updated correctly after building");
 }
     [Fact]
-[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildSettlementWithSufficientResourcesAfterUpdate()
+public void CanBuildSettlementWithSufficientResourcesAfterUpdate()
 {
     // Arrange
     player = new Player("TestPlayer");
@@ -197,7 +197,7 @@ public void CanBuildSettlementWithSufficientResources() {
     Assert.True(player.Resources.HasSufficientResources(0, 0, 0, 0, 0), "Player resources should be updated correctly after building");
 }
     [Fact]
-[Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]public void CanBuildTwoSettlementWithSufficientResourcesAfterUpdates()
+public void CanBuildTwoSettlementWithSufficientResourcesAfterUpdates()
 {
     // Arrange
     player = new Player("TestPlayer");

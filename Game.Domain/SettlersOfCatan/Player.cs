@@ -31,11 +31,9 @@ public class Player
         if (settlement.Owner != this) return false; // Only the owner can upgrade
         return CanUpgradeSettlementResources(); // Check resources and conditions
     }
-    public bool CanUpgradeSettlementResources()
-    {
-        // Ensure this checks correctly for all upgrade resources including wood and stone
-        return Resources.Wheat >= 2 && Resources.Stone >= 1;
-    }
+    public bool CanUpgradeSettlementResources() {
+    return Resources.Wheat >= 2 && Resources.Stone >= 1;
+}
     public Resources OwnerResources => Resources;
     public bool IsLocationValid(Location location)
     {

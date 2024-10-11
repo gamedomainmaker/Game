@@ -55,7 +55,7 @@ public class TryUpgradeSettlementTests
     }
 
     [Fact]
-[Trait("HasTicket", "Id-19231067-76d7-43c6-a04d-e6974a5f4351")]    public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
+[Trait("HasTicket", "Id-19231067-76d7-43c6-a04d-e6974a5f4351")]public void Correctly_Upgrades_Settlement_With_Sufficient_Resources() {
         EnsureResourcesForUpgrade();
         var location = new Location(0, 0);
         var settlement = new Settlement(location, player);
