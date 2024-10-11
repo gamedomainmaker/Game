@@ -59,20 +59,20 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player 2 was able to build a settlement on a location occupied by Player 1.");
     }
-
-    [Fact]
+        [Fact]
 [Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]    public void CanBuildSettlementOnLocation()
     {
         // Arrange
-        player1 = new Player("Player1") { Resources = new Resources(1, 1, 1, 1, 0) };
+        player1 = new Player("Player1") { Resources = new Resources(1, 0, 0, 0, 1) }; // Set to valid resources
         var board = new Board(_logger);
         var location = new Location(3, 3);
-
+        
         // Act
         var result = board.TryBuildSettlement(player1, location);
-
+        
         // Assert
         Assert.True(result, "Player 1 was not able to build a settlement.");
+        Assert.True(player1.Resources.HasSufficientResources(1, 0, 0, 0, 1), "Player 1 did not have sufficient resources.");
     }
     private Player player1;
     private Player player2;
@@ -140,24 +140,24 @@ public class TryBuildSettlementTests
         // Assert
         Assert.False(result, "Player was able to build a settlement without the necessary resources.");
     }
-
-    [Fact]
+        [Fact]
 [Trait("HasTicket", "Id-bad55473-9d5e-4b0a-ae34-ba782e216651")]    public void CanBuildTwoSettlementWithSufficientResources()
     {
         // Arrange
         player = new Player("TestPlayer");
-        player.Resources = new Resources(2, 2, 2, 2, 0);
+        player.Resources = new Resources(2, 2, 2, 2, 0); // Set to valid resources
         var board = new Board(_logger);
-        var location = new Location(1, 1);
+        var location1 = new Location(1, 1);
+        var location2 = new Location(2, 2);
 
         // Act
-        board.TryBuildSettlement(player, location);
-
-        location = new Location(2, 2);
-        var result = board.TryBuildSettlement(player, location);
+        var result1 = board.TryBuildSettlement(player, location1);
+        var result2 = board.TryBuildSettlement(player, location2);
 
         // Assert
-        Assert.True(result, "Player was unable to build a settlement with sufficient resources.");
+        Assert.True(result1, "Player was unable to build the first settlement with sufficient resources.");
+        Assert.True(result2, "Player was unable to build the second settlement with sufficient resources.");
+        Assert.True(player.Resources.HasSufficientResources(0, 0, 0, 0, 0), "Player should have sufficient resources after building two settlements.");
     }
 
     [Fact]
